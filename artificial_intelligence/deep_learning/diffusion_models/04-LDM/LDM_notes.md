@@ -59,11 +59,8 @@ ldm用来做super resolution的条件生成的具体实现方法是什么，是�
 条件 (Condition): 低分辨率图像 x (e.g., 128x128)。这是我们给模型的输入提示。
 制作配对数据: 我们通常从一个高分辨率图像数据集开始。对于每一张高分辨率图像 y，我们通过一个下采样算法（如双三次插值 Bicubic Downsampling）来创建其对应的低分辨率版本 x。这样，我们就得到了大量的 (x, y) 配对数据。
 
-
-
 ## References
-
-PyTorch-VAE/models/vanilla_vae.py at master · AntixK/PyTorch-VAE (github.com)
-https://zhuanlan.zhihu.com/p/627616358
-https://github.com/AntixK/PyTorch-VAE/blob/master/models/vanilla_vae.py
+- PyTorch-VAE/models/vanilla_vae.py at master · AntixK/PyTorch-VAE (github.com)
+- https://zhuanlan.zhihu.com/p/627616358
+- https://github.com/AntixK/PyTorch-VAE/blob/master/models/vanilla_vae.py
 

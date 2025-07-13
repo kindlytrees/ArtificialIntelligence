@@ -1,10 +1,8 @@
 # Text Inversion notes
 
-## 相关的文字说明
+## 问题1：diffusion models里的text inversion用新的embeddings代表新的视觉概念，请问性能的embedding的token如何设计，是不在当前词汇表里的新词汇吗，这样是不是要修改embedding的参数，还是说和dreambooth类似找出在预训练模型里没有用到但在词汇表里的token来进行指代是不是更加方便点？
 
 辅助gemini回答：
-
-diffusion models里的text inversion用新的embeddings代表新的视觉概念，请问性能的embedding的token如何设计，是不在当前词汇表里的新词汇吗，这样是不是要修改embedding的参数，还是说和dreambooth类似找出在预训练模型里没有用到但在词汇表里的token来进行指代是不是更加方便点？
 
 Textual Inversion的核心思想是：“我们不改变模型的任何部分（U-Net或Text Encoder），只在文本编码器的词嵌入层（word embedding layer）中，为我们的新概念创造一个全新的、自定义的词向量（embedding）。”
 
@@ -24,7 +22,7 @@ Textual Inversion的核心思想是：“我们不改变模型的任何部分（
 实现与分享的便利性: 创建一个全新的占位符（如<my-super-dog>）非常直观。用户不需要去“寻找”一个神秘的稀有词。分享时也更容易理解，你只需要告诉别人：“加载这个embedding文件，然后用<my-super-dog>这个词就能生成我的狗了。”这比告诉他们“用sks这个词”要清晰得多。
 避免Token冲突: 如果两个人都碰巧选择了sks这个稀有词来训练他们各自的概念（比如一个人训练了狗，另一个人训练了背包），那么他们的embedding文件就会产生冲突。而使用自定义的、独特的占位符（如<johns-dog>和<marys-backpack>）则完全避免了这个问题。
 
-## 为新概念个特殊的名字主要是为了解析方便，脚本先处理找出这个特殊的占位符并赋予新创建的tokenid和其对应，其他的部分再沿用分词器处理的结果，如何进行细节上的处理呢，比如占位符再分词器得到的token序列中的位置等信息？
+## 问题2：为新概念个特殊的名字主要是为了解析方便，脚本先处理找出这个特殊的占位符并赋予新创建的tokenid和其对应，其他的部分再沿用分词器处理的结果，如何进行细节上的处理呢，比如占位符再分词器得到的token序列中的位置等信息？
 
 - 辅助gemini回答：
 
@@ -153,15 +151,9 @@ Textual Inversion的核心思想是：“我们不改变模型的任何部分（
 整个过程设计得非常优雅，它在不破坏原有模型结构和流程的前提下，通过对输入管道的微小扩展，实现了学习全新概念的能力。
 
 ## References
-
-https://github.com/huggingface/diffusers
-examples目录下三个子目录应用
-dreambooth
-text_to_image
-textual_inversion
-https://zhuanlan.zhihu.com/p/627133491 LoRA原理和实践
-https://mp.weixin.qq.com/s/NE3Gkr64G3XADVdujtzRXw dreambooth原理和实践
-https://huggingface.co/models
-https://civitai.com/
-https://dreambooth.github.io/ 
-https://textual-inversion.github.io/
+- https://zhuanlan.zhihu.com/p/627133491 LoRA原理和实践
+- https://mp.weixin.qq.com/s/NE3Gkr64G3XADVdujtzRXw dreambooth原理和实践
+- https://huggingface.co/models
+- https://civitai.com/
+- https://dreambooth.github.io/ 
+- https://textual-inversion.github.io/

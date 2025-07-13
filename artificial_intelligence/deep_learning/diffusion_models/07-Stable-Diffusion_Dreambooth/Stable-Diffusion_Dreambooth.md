@@ -1,18 +1,18 @@
 # DreamBooth
 
-## 请对dreambooth论文中的数据集的构建方法和基于数据集的训练方法进行详细说明，这些不同的subjects和class的数据是混合在一起进行训练的吗？
-- 可以支持多场景(subjects的训练)
+## 问题1：请对dreambooth论文中的数据集的构建方法和基于数据集的训练方法进行详细说明，这些不同的subjects和class的数据是混合在一起进行训练的吗？
 
-## dreambooth中学习特定的subject是否也可以用text inversion中设计新的token placeholder并基于新生成的token的embedding的参数更新来实现，两者的作用不同的具体的表现有哪些？
+回答：可以支持但场景和多场景(subjects的训练)，如论文中的30个subjects，其中21个为objects，9个为live subjects/pets
 
-您好，您这个问题非常精彩，因为它直击了两种主流个性化技术的核心思想和能力边界。
+## 问题2：dreambooth中学习特定的subject是否也可以用text inversion中设计新的token placeholder并基于新生成的token的embedding的参数更新来实现，两者的作用不同的具体的表现有哪些？
+
+- 辅助gemini回答摘要：
 
 答案是：**是的，你可以用Textual Inversion的方法来学习一个特定的Subject，就像DreamBooth一样。但它们实现这一目标的方式完全不同，因此最终的效果和能力侧重点也有着显著的区别。**
 
-这两种方法就像两位风格迥异的画家，虽然都能画出你的肖像，但一位擅长捕捉神韵和灵魂（Textual Inversion），另一位则精通于描绘逼真的材质和光影细节（DreamBooth）。
+该问题需要去探究两种主流个性化技术的核心思想和能力边界。这两种方法就像两位风格迥异的画家，虽然都能画出你的肖像，但一位擅长捕捉神韵和灵魂（Textual Inversion），另一位则精通于描绘逼真的材质和光影细节（DreamBooth）。
 
 下面我们来详细对比，当两者都用于学习同一个特定主体（Subject）时，具体的表现差异。
-
 ---
 
 ### 核心机制回顾
