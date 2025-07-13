@@ -13,3 +13,7 @@
 ### 大语言模型基础
 - [课程视频](https://space.bilibili.com/505620745/lists/5789485)
 - [实验手册](./artificial_intelligence/deep_learning/llm/)
+
+### 扩散模型基础及其在图像生成中的应用
+- [课程视频](https://space.bilibili.com/505620745/lists/5842637)
+- [实验手册](./artificial_intelligence/deep_learning/diffusion_models/)
