@@ -67,6 +67,5 @@ wget -P data/ https://github.com/jbrownlee/Datasets/releases/download/Flickr8k/F
 huggingface-cli login
 
 --train_data_dir="./data" \需要请求权限
-
-E:\workspace\opensource\diffusers\examples\text_to_image\README.md 有说明怎么用diffusers库加载预训练模型和lora模型进行推理
+开源库中有diffusers\examples\text_to_image\README.md 有说明怎么用diffusers库加载预训练模型和lora模型进行推理
 ```

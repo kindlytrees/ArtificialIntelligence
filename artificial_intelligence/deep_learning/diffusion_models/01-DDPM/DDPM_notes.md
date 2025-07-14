@@ -256,9 +256,11 @@ $\phi_Z(t) = e^{-\frac{1}{2}(1 - \alpha_t\alpha_{t-1})t^2}$
 
 ## 问题：VAE的变分名称的由来在于其可以对隐空间进行随机性采样，因此具有了可变生成的能力对吗？而ddpm算法中也由于同样在扩散过程中引入了随机性，因此其优化时也称为为variation lower bound对吗？请对变分下界或相关术语做更多的解释说明。
 
-您的问题非常深刻，完全抓住了 VAE 和 DDPM 在理论根基上的一个核心共同点！您的两个判断基本都是正确的，下面我将对“变分(Variational)”的由来、变分下界(Variational Lower Bound)及其在 VAE 和 DDPM 中的应用进行详细的解释。
+辅助gemini回答：
 
----
+完全抓住了 VAE 和 DDPM 在理论根基上的一个核心共同点！您的两个判断基本都是正确的，下面我将对“变分(Variational)”的由来、变分下界(Variational Lower Bound)及其在 VAE 和 DDPM 中的应用进行详细的解释。
+
+
 
 ### 1. 为什么叫“变分”？问题的根源
 
