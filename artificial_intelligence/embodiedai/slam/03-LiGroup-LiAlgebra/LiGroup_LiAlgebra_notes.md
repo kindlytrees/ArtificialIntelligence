@@ -23,12 +23,10 @@
 **核心思想**：我们想要找到一个 $Z$，使得 $e^Z = e^X e^Y$。通过对数函数，我们可以得到 $Z = \log(e^X e^Y)$。我们的目标就是将这个表达式展开，并用 $X$ 和 $Y$ 的组合来表示 $Z$。
 
 **所需工具**：矩阵指数函数和对数函数的泰勒级数展开。
-1.  **指数函数展开**：
-    $ e^A = I + A + \frac{A^2}{2!} + \frac{A^3}{3!} + \dots $
-2.  **对数函数展开** (对于靠近单位矩阵的 $I+B$)：
-    $ \log(I+B) = B - \frac{B^2}{2} + \frac{B^3}{3} - \dots $
+1.  **指数函数展开**： $e^A = I + A + \frac{A^2}{2!} + \frac{A^3}{3!} + \dots$
+2.  **对数函数展开** (对于靠近单位矩阵的 $I+B$)： $\log(I+B) = B - \frac{B^2}{2} + \frac{B^3}{3} - \dots$
 
-**关键前提**：$X$ 和 $Y$ 是李代数中的元素（例如，$4\times4$ 的矩阵），它们的乘法是**非交换的**，即 $XY \neq YX$。这是整个推导的核心。
+**关键前提**： $X$ 和 $Y$ 是李代数中的元素（例如，$4\times4$ 的矩阵），它们的乘法是**非交换的**，即 $XY \neq YX$。这是整个推导的核心。
 
 ---
 
@@ -40,8 +38,8 @@
 
 我们先将 $e^X$ 和 $e^Y$ 分别进行泰勒展开，然后相乘。为了推导出包含第一个李括号的项，我们至少需要展开到二阶。
 
-$ e^X \approx I + X + \frac{X^2}{2} $
-$ e^Y \approx I + Y + \frac{Y^2}{2} $
+ $e^X \approx I + X + \frac{X^2}{2}$
+ $e^Y \approx I + Y + \frac{Y^2}{2}$
 
 现在，将这两个多项式相乘，**并严格保持乘法顺序**：
 $ e^X e^Y \approx (I + X + \frac{X^2}{2}) (I + Y + \frac{Y^2}{2}) $
@@ -49,25 +47,23 @@ $ = I(I + Y + \frac{Y^2}{2}) + X(I + Y + \frac{Y^2}{2}) + \frac{X^2}{2}(I + Y + 
 $ = (I + Y + \frac{Y^2}{2}) + (X + XY + \frac{XY^2}{2}) + (\frac{X^2}{2} + \frac{X^2Y}{2} + \frac{X^2Y^2}{4}) $
 
 现在，我们按阶数（$X$ 和 $Y$ 的幂次之和）来收集项，并忽略三阶及以上的项：
-*   **零阶**：$I$
-*   **一阶**：$X + Y$
-*   **二阶**：$\frac{X^2}{2} + XY + \frac{Y^2}{2}$
+*   **零阶**： $I$
+*   **一阶**： $X + Y$
+*   **二阶**： $\frac{X^2}{2} + XY + \frac{Y^2}{2}$
 
-所以，我们得到 $e^X e^Y$ 的二阶近似：
-$ e^X e^Y \approx I + \underbrace{(X+Y) + \frac{1}{2}(X^2 + 2XY + Y^2)}_{\text{记为 } B} $
+所以，我们得到 $e^X e^Y$ 的二阶近似： $e^X e^Y \approx I + \underbrace{(X+Y) + \frac{1}{2}(X^2 + 2XY + Y^2)}_{\text{记为 } B}$
 
 **第二步：代入对数函数 $\log(I+B)$**
 
 现在我们计算 $Z = \log(e^X e^Y) \approx \log(I+B)$。使用对数函数的泰勒展开 $\log(I+B) = B - \frac{B^2}{2} + \dots$
 
-代入 $B$：
-$ Z \approx \left[ (X+Y) + \frac{1}{2}(X^2 + 2XY + Y^2) \right] - \frac{1}{2} \left[ (X+Y) + \dots \right]^2 + \dots $
+代入 $B$： $Z \approx \left[ (X+Y) + \frac{1}{2}(X^2 + 2XY + Y^2) \right] - \frac{1}{2} \left[ (X+Y) + \dots \right]^2 + \dots$
 
 我们只需要计算到二阶，所以第二项中的 $B^2$ 只需要计算其最低阶部分，即 $(X+Y)^2$。
-$ (X+Y)^2 = (X+Y)(X+Y) = X^2 + XY + YX + Y^2 $  **(注意这里的 $XY$ 和 $YX$ 不能合并！)**
+ $(X+Y)^2 = (X+Y)(X+Y) = X^2 + XY + YX + Y^2$  **(注意这里的 $XY$ 和 $YX$ 不能合并！)**
 
 现在将这个结果代回 $Z$ 的表达式：
-$ Z \approx \left[ (X+Y) + \frac{1}{2}X^2 + XY + \frac{1}{2}Y^2 \right] - \frac{1}{2} [X^2 + XY + YX + Y^2] $
+ $ Z\approx \left[ (X+Y) + \frac{1}{2}X^2 + XY + \frac{1}{2}Y^2 \right] - \frac{1}{2} [X^2 + XY + YX + Y^2]$
 
 **第三步：合并同类项，见证奇迹**
 
