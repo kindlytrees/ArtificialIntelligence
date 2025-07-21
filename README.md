@@ -17,3 +17,7 @@
 ### 扩散模型基础及其在图像生成中的应用
 - [课程视频](https://space.bilibili.com/505620745/lists/5842637)
 - [实验手册](./artificial_intelligence/deep_learning/diffusion_models/)
+
+### SLAM原理及应用
+- [课程视频](https://space.bilibili.com/505620745/lists/5906077)
+- [实验手册](./artificial_intelligence/robotics/slam/)
