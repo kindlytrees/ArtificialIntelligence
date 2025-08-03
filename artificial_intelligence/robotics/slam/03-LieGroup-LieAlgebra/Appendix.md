@@ -3,6 +3,8 @@
 
 ####  问题4：从BCH近似得出雅可比的逆的级数表示的过程
 
+辅助大模型回答：
+
 当然可以。我们来详细地推导BCH一阶近似如何导出这两个雅可比表达式。这个过程是理解李群与李代数在优化问题中应用的核心。
 
 我们的目标是分析表达式 `ln(exp(φ₁^) exp(φ₂^))`，并在线性化假设下（即其中一个旋转是微小量），找到它与 `φ₁` 和 `φ₂` 的关系。
@@ -618,10 +620,6 @@ $$
 这个 `∂R/∂φ` 就直接由我们推导的公式给出。`dR` 可以看作是 `(∂R/∂φ)dφ`，所以 `(∂R/∂φ)` 就对应于 `R (...) J_r(φ)` 这部分操作。这使得我们可以在优化框架（如高斯-牛顿法或L-M法）中计算雅可比矩阵，从而更新状态量 `φ`。
 
 **右雅可比的优势**：传感器（如IMU）的测量值（角速度、加速度）通常是在其自身的**物体坐标系**下给出的。使用右扰动模型和右雅可比，可以非常自然地将这些测量值与状态变量的更新联系起来，使得公式推导更加简洁和直观。
-
-
-
-
 
 该扰动模型的表示方法中是左边否用梯度表示更为合理：\frac{\partial(\boldsymbol{R} \boldsymbol{p})}{\partial \boldsymbol{\varphi}}=\lim _{\boldsymbol{\varphi} \rightarrow \mathbf{0}} \frac{\exp \left(\boldsymbol{\varphi}^{\wedge}\right) \exp \left(\boldsymbol{\phi}^{\wedge}\right) \boldsymbol{p}-\exp \left(\boldsymbol{\phi}^{\wedge}\right) \boldsymbol{p}}{\boldsymbol{\varphi}}
 
