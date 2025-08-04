@@ -1,9 +1,6 @@
 # Loop Detection
 
-
 - 辅助gemini回答：
-
-
 orbslam3中根据Sim3Solver算法计算mg2oLoopSlw和mg2oMergeSlw，这两个变量是否指代匹配的关键帧到当前回环检测关键帧之间的sim3变换，请补充其计算的逻辑细节，以及尺度方面的特殊的更多的说明。
 
 好的，这是一个非常深入且关键的问题，涉及到ORB-SLAM3闭环检测和地图融合的核心机制。我们来详细剖析 `mg2oLoopSlw` 和 `mg2oMergeSlw` 的计算逻辑，并重点说明尺度的特殊性。

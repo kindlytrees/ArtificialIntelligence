@@ -16,9 +16,7 @@ $$
 \end{aligned}
 $$
 
-
 辅助大模型回答：
-
 好的，我们来一步步详细拆解这些对极几何的公式，并解释其背后的几何原理。这是一个从相机成像模型到最终**对极约束**方程的完整推导过程。
 
 ### 0. 场景设定
@@ -37,20 +35,24 @@ $$
 
 ### 1. 第一组公式：从3D点到像素点，再到归一化平面
 
-$ \begin{aligned}
+$$
+\begin{aligned}
 p_1 &\simeq K \mathbf{P} \\
 p_2 &\simeq K(R \mathbf{P}+t)
-\end{aligned} $
+\end{aligned}
+$$
 
 **原理说明**:
 *   这是**相机投影模型**的基本公式。
 *   **第一行**: $p_1 \simeq K \mathbf{P}$。点 $P$ 在相机1坐标系下的坐标是 $\mathbf{P}$。相机内参 $K$ 将这个3D点投影到相机1的像素平面上，得到像素坐标 $p_1$。符号 $\simeq$ 表示等式在齐次坐标意义下成立，即左右两侧相差一个非零尺度因子（这个尺度因子就是点的深度）。
 *   **第二行**: $p_2 \simeq K(R \mathbf{P}+t)$。首先，将点 $P$ 从相机1坐标系变换到相机2坐标系，得到 $\mathbf{P}' = R\mathbf{P}+t$。然后，相机2的内参 $K$ 再将这个点投影到相机2的像素平面上，得到像素坐标 $p_2$。
 
-$ \begin{aligned}
+$$
+\begin{aligned}
 x_1 &= K^{-1} p_1 \\
 x_2 &= K^{-1} p_2
-\end{aligned} $
+\end{aligned}
+$$
 
 **原理说明**:
 *   这是从**像素坐标**反向计算**归一化平面坐标**的过程。
@@ -58,7 +60,7 @@ x_2 &= K^{-1} p_2
 *   从几何上看，$x_1$ 和 $x_2$ 是从各自相机光心出发，指向3D点 $P$ 的**方向向量**。$x_1 = [X/Z, Y/Z, 1]^T$（在相机1坐标系下），$x_2 = [X'/Z', Y'/Z', 1]^T$（在相机2坐标系下）。
 *   通过左乘 $K^{-1}$，我们“撤销”了内参 $K$ 的作用，得到了这个方向向量。
 
-$ x_2 \simeq R x_1 + t $
+$x_2 \simeq R x_1 + t$
 
 **原理说明**:
 *   这个公式是**核心几何关系**在归一化平面上的体现。
@@ -74,30 +76,30 @@ $ x_2 \simeq R x_1 + t $
 
 我们的目标是消除未知的3D点 $\mathbf{P}$（或其深度 $s_1, s_2$），只建立 $x_1, x_2, R, t$ 之间的关系。
 
-$ \boldsymbol{t}^{\wedge} \boldsymbol{x}_2 \simeq \boldsymbol{t}^{\wedge} \boldsymbol{R} \boldsymbol{x}_1 $
+$\boldsymbol{t}^{\wedge} \boldsymbol{x}_2 \simeq \boldsymbol{t}^{\wedge} \boldsymbol{R} \boldsymbol{x}_1$
 
 **原理说明**:
 *   **几何意义**: 我们知道 $x_2, Rx_1, t$ 三个向量是共面的。这三个向量的几何关系是：相机光心 $O_1$、光心 $O_2$ 和三维点 $P$ 构成了**对极平面 (Epipolar Plane)**。向量 $x_1$（在相机1坐标系）、$x_2$（在相机2坐标系）、$t$（连接 $O_1, O_2$）都位于这个平面内。$Rx_1$ 是将 $x_1$ 旋转到相机2坐标系下，它也必然在这个平面内。
 *   **代数操作**: 为了消除平移向量 $t$，一个非常巧妙的方法是两边同时**左乘 $t$ 的反对称矩阵 $t^{\wedge}$**。
 *   回忆叉乘的性质：$a \times b = a^\wedge b$。
 *   我们从 $x_2 = R x_1 + t$ （忽略尺度因子）出发，两边左叉乘 $t$：
-    $ t \times x_2 = t \times (R x_1 + t) $
-    $ t \times x_2 = t \times (R x_1) + t \times t $
+    $t \times x_2 = t \times (R x_1 + t)$
+    $t \times x_2 = t \times (R x_1) + t \times t$
 *   因为任何向量与自身的叉乘为零 ($t \times t = \mathbf{0}$)，所以：
-    $ t \times x_2 = t \times R x_1 $
+    $t \times x_2 = t \times R x_1$
 *   将其写成反对称矩阵形式，就得到了 $t^{\wedge} x_2 = t^{\wedge} R x_1$。
 
 ---
 
 ### 3. 第三组公式：得到最终的对极约束方程
 
-$ \boldsymbol{x}_2^{\mathrm{T}} \boldsymbol{t}^{\wedge} \boldsymbol{x}_2 \simeq \boldsymbol{x}_2^{\mathrm{T}} \boldsymbol{t}^{\wedge} \boldsymbol{R} \boldsymbol{x}_1 $
+$\boldsymbol{x}_2^{\mathrm{T}} \boldsymbol{t}^{\wedge} \boldsymbol{x}_2 \simeq \boldsymbol{x}_2^{\mathrm{T}} \boldsymbol{t}^{\wedge} \boldsymbol{R} \boldsymbol{x}_1$
 
 **原理说明**:
 *   这是一个纯粹的代数步骤，目的是进一步简化关系，得到一个标量方程。
 *   我们将上一步得到的向量等式 $t^{\wedge} x_2 = t^{\wedge} R x_1$ 两边同时**左点乘向量 $x_2^T$**。
 
-$ \boldsymbol{t}^{\wedge} \boldsymbol{x}_2 \text { 是一个与 } \boldsymbol{t} \text { 和 } \boldsymbol{x}_2 \text { 都垂直的向量 } $
+$\boldsymbol{t}^{\wedge} \boldsymbol{x}_2 \text { 是一个与 } \boldsymbol{t} \text { 和 } \boldsymbol{x}_2 \text { 都垂直的向量 }$
 
 **原理说明**:
 *   $t^{\wedge} x_2$ 就是叉积 $t \times x_2$。
@@ -106,7 +108,7 @@ $ \boldsymbol{t}^{\wedge} \boldsymbol{x}_2 \text { 是一个与 } \boldsymbol{t}
     $ x_2^T (t^{\wedge} x_2) = x_2 \cdot (t \times x_2) = 0 $
 *   这是一种**混合积 (Scalar Triple Product)** 的形式 $a \cdot (b \times c)$。当其中两个向量相同时（如 $x_2 \cdot (t \times x_2)$），这个混合积代表的平行六面体体积为零，所以结果为零。
 
-$ \boldsymbol{x}_2^{\mathrm{T}} \boldsymbol{t}^{\wedge} \boldsymbol{R} \boldsymbol{x}_1 = 0 $
+$\boldsymbol{x}_2^{\mathrm{T}} \boldsymbol{t}^{\wedge} \boldsymbol{R} \boldsymbol{x}_1 = 0$
 
 **原理说明**:
 *   这是整个推导的**最终结果**，被称为**对极约束 (Epipolar Constraint)**。
@@ -125,15 +127,15 @@ $x_2^T (t^\wedge R x_1) = 0$ 实际上是混合积 $x_2 \cdot (t \times Rx_1) = 
 
 ### 4. 从本质矩阵到基础矩阵
 
-$ \boldsymbol{p}_2^{\mathrm{T}} \boldsymbol{K}^{-\mathrm{T}} \boldsymbol{t}^{\wedge} \boldsymbol{R} \boldsymbol{K}^{-1} \boldsymbol{p}_1 = 0 $
+$\boldsymbol{p}_2^{\mathrm{T}} \boldsymbol{K}^{-\mathrm{T}} \boldsymbol{t}^{\wedge} \boldsymbol{R} \boldsymbol{K}^{-1} \boldsymbol{p}_1 = 0$
 
 **原理说明**:
 *   在实际应用中，我们通常只有像素坐标 $p_1, p_2$ 和相机内参 $K$。
 *   我们将 $x_1 = K^{-1}p_1$ 和 $x_2 = K^{-1}p_2$ 代入对极约束方程 $x_2^T t^\wedge R x_1 = 0$：
-    $ (K^{-1}p_2)^T (t^\wedge R) (K^{-1}p_1) = 0 $
+    $(K^{-1}p_2)^T (t^\wedge R) (K^{-1}p_1) = 0$
 *   利用转置的性质 $(AB)^T = B^T A^T$：
-    $ p_2^T (K^{-1})^T t^\wedge R K^{-1} p_1 = 0 $
-    $ (K^{-1})^T$ 通常简写为 $K^{-T}$。
+    $p_2^T (K^{-1})^T t^\wedge R K^{-1} p_1 = 0$
+    $(K^{-1})^T$ 通常简写为 $K^{-T}$。
 *   这就得到了最终可以用像素坐标直接计算的约束方程。
 
 **定义两个重要的矩阵**:

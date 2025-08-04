@@ -1,6 +1,5 @@
 # Camera and Imaging
 
-
 rgb-d图像中rgb和一般的图像是一致的吗，然后每一个像素多一个深度信息？还是基于点云的更稀疏的表示？
 
 RGB-D图像 = 一个标准的RGB图像 + 一个与之对齐的深度图像（Depth Map）

@@ -26,7 +26,8 @@ $(\vec{y}-H \vec{x})^{\top} \Sigma^{-1}(\vec{y}-H \vec{x})$
 ### 1. 问题设定
 
 我们有一个线性观测模型：
-$ \mathbf{y} = H\mathbf{x} + \mathbf{v} $
+
+$\mathbf{y} = H\mathbf{x} + \mathbf{v}$
 
 其中：
 *   $\mathbf{x} \in \mathbb{R}^n$ 是我们想要估计的**未知状态向量**。
@@ -34,13 +35,11 @@ $ \mathbf{y} = H\mathbf{x} + \mathbf{v} $
 *   $H \in \mathbb{R}^{m \times n}$ 是**观测矩阵**（已知），它将状态空间映射到观测空间。
 *   $\mathbf{v} \in \mathbb{R}^m$ 是**观测噪声**，是一个随机向量。
 
-我们被告知，噪声 $\mathbf{v}$ 服从一个零均值的多维高斯分布，其协方差矩阵为 $\Sigma$（已知）：
-$ \mathbf{v} \sim \mathcal{N}(\mathbf{0}, \Sigma) $
+我们被告知，噪声 $\mathbf{v}$ 服从一个零均值的多维高斯分布，其协方差矩阵为 $\Sigma$（已知）：$\mathbf{v} \sim \mathcal{N}(\mathbf{0}, \Sigma)$
 
 其中 $\Sigma \in \mathbb{R}^{m \times m}$ 是一个对称正定矩阵。
 
-由此可得，观测向量 $\mathbf{y}$ 也服从一个高斯分布：
-$ \mathbf{y} \sim \mathcal{N}(H\mathbf{x}, \Sigma) $
+由此可得，观测向量 $\mathbf{y}$ 也服从一个高斯分布：$\mathbf{y} \sim \mathcal{N}(H\mathbf{x}, \Sigma)$
 
 我们的目标是：给定已知的 $\mathbf{y}$, $H$ 和 $\Sigma$，找到一个最优的 $\mathbf{x}^*$，使得这个观测 $\mathbf{y}$ 出现的**概率最大**。
 
@@ -53,50 +52,50 @@ $ \mathbf{y} \sim \mathcal{N}(H\mathbf{x}, \Sigma) $
 **第一步：写出似然函数**
 
 $\mathbf{y}$ 的概率密度函数（PDF）就是我们的似然函数 $L(\mathbf{x})$:
-$ L(\mathbf{x}) = p(\mathbf{y} | \mathbf{x}; H, \Sigma) = \frac{1}{\sqrt{(2\pi)^m \det(\Sigma)}} \exp\left( -\frac{1}{2} (\mathbf{y} - H\mathbf{x})^T \Sigma^{-1} (\mathbf{y} - H\mathbf{x}) \right) $
+$L(\mathbf{x}) = p(\mathbf{y} | \mathbf{x}; H, \Sigma) = \frac{1}{\sqrt{(2\pi)^m \det(\Sigma)}} \exp\left( -\frac{1}{2} (\mathbf{y} - H\mathbf{x})^T \Sigma^{-1} (\mathbf{y} - H\mathbf{x}) \right)$
 
 **第二步：取对数并简化**
 
 为了方便求导，我们通常最大化对数似然函数 $\log L(\mathbf{x})$，这与最大化 $L(\mathbf{x})$ 是等价的，因为对数函数是单调递增的。
 
-$ \log L(\mathbf{x}) = \log\left(\frac{1}{\sqrt{(2\pi)^m \det(\Sigma)}}\right) - \frac{1}{2} (\mathbf{y} - H\mathbf{x})^T \Sigma^{-1} (\mathbf{y} - H\mathbf{x}) $
+$\log L(\mathbf{x}) = \log\left(\frac{1}{\sqrt{(2\pi)^m \det(\Sigma)}}\right) - \frac{1}{2} (\mathbf{y} - H\mathbf{x})^T \Sigma^{-1} (\mathbf{y} - H\mathbf{x})$
 
 第一项是与 $\mathbf{x}$ 无关的常数。因此，最大化 $\log L(\mathbf{x})$ 等价于**最小化**下面这个二次型（也称为马氏距离的平方）：
 
-$ J(\mathbf{x}) = (\mathbf{y} - H\mathbf{x})^T \Sigma^{-1} (\mathbf{y} - H\mathbf{x}) $
+$J(\mathbf{x}) = (\mathbf{y} - H\mathbf{x})^T \Sigma^{-1} (\mathbf{y} - H\mathbf{x})$
 
 **第三步：求导并令其为零**
 
 为了找到使 $J(\mathbf{x})$ 最小的 $\mathbf{x}$，我们计算 $J(\mathbf{x})$ 对 $\mathbf{x}$ 的梯度，并令其等于零。
 
 首先展开 $J(\mathbf{x})$:
-$ J(\mathbf{x}) = (\mathbf{y}^T - \mathbf{x}^T H^T) \Sigma^{-1} (\mathbf{y} - H\mathbf{x}) $
-$ J(\mathbf{x}) = \mathbf{y}^T \Sigma^{-1} \mathbf{y} - \mathbf{y}^T \Sigma^{-1} H \mathbf{x} - \mathbf{x}^T H^T \Sigma^{-1} \mathbf{y} + \mathbf{x}^T H^T \Sigma^{-1} H \mathbf{x} $
+$J(\mathbf{x}) = (\mathbf{y}^T - \mathbf{x}^T H^T) \Sigma^{-1} (\mathbf{y} - H\mathbf{x})$
+$J(\mathbf{x}) = \mathbf{y}^T \Sigma^{-1} \mathbf{y} - \mathbf{y}^T \Sigma^{-1} H \mathbf{x} - \mathbf{x}^T H^T \Sigma^{-1} \mathbf{y} + \mathbf{x}^T H^T \Sigma^{-1} H \mathbf{x}$
 
 注意到标量项 $\mathbf{x}^T H^T \Sigma^{-1} \mathbf{y}$ 等于它的转置 $\mathbf{y}^T (\Sigma^{-1})^T H \mathbf{x}$。因为 $\Sigma$ 是对称的，所以 $\Sigma^{-1}$ 也是对称的，即 $(\Sigma^{-1})^T = \Sigma^{-1}$。因此：
-$ \mathbf{x}^T H^T \Sigma^{-1} \mathbf{y} = \mathbf{y}^T \Sigma^{-1} H \mathbf{x} $
+$\mathbf{x}^T H^T \Sigma^{-1} \mathbf{y} = \mathbf{y}^T \Sigma^{-1} H \mathbf{x}$
 
 所以，
-$ J(\mathbf{x}) = \mathbf{y}^T \Sigma^{-1} \mathbf{y} - 2 \mathbf{y}^T \Sigma^{-1} H \mathbf{x} + \mathbf{x}^T H^T \Sigma^{-1} H \mathbf{x} $
+$J(\mathbf{x}) = \mathbf{y}^T \Sigma^{-1} \mathbf{y} - 2 \mathbf{y}^T \Sigma^{-1} H \mathbf{x} + \mathbf{x}^T H^T \Sigma^{-1} H \mathbf{x}$
 
 现在求梯度。我们使用两个矩阵求导的结论：
 1.  $\frac{\partial (\mathbf{a}^T \mathbf{x})}{\partial \mathbf{x}} = \mathbf{a}$
 2.  $\frac{\partial (\mathbf{x}^T A \mathbf{x})}{\partial \mathbf{x}} = 2 A \mathbf{x}$ (当 A 是对称矩阵时)
 
 在我们的问题中，$H^T \Sigma^{-1} H$ 是对称的。因此：
-$ \frac{\partial J(\mathbf{x})}{\partial \mathbf{x}} = \frac{\partial}{\partial \mathbf{x}} (\mathbf{y}^T \Sigma^{-1} \mathbf{y}) - \frac{\partial}{\partial \mathbf{x}} (2 \mathbf{y}^T \Sigma^{-1} H \mathbf{x}) + \frac{\partial}{\partial \mathbf{x}} (\mathbf{x}^T H^T \Sigma^{-1} H \mathbf{x}) $
-$ \frac{\partial J(\mathbf{x})}{\partial \mathbf{x}} = \mathbf{0} - 2 (2 \mathbf{y}^T \Sigma^{-1} H)^T + 2 (H^T \Sigma^{-1} H) \mathbf{x} $
-$ \frac{\partial J(\mathbf{x})}{\partial \mathbf{x}} = -2 H^T \Sigma^{-1} \mathbf{y} + 2 (H^T \Sigma^{-1} H) \mathbf{x} $
+$\frac{\partial J(\mathbf{x})}{\partial \mathbf{x}} = \frac{\partial}{\partial \mathbf{x}} (\mathbf{y}^T \Sigma^{-1} \mathbf{y}) - \frac{\partial}{\partial \mathbf{x}} (2 \mathbf{y}^T \Sigma^{-1} H \mathbf{x}) + \frac{\partial}{\partial \mathbf{x}} (\mathbf{x}^T H^T \Sigma^{-1} H \mathbf{x})$
+$\frac{\partial J(\mathbf{x})}{\partial \mathbf{x}} = \mathbf{0} - 2 (2 \mathbf{y}^T \Sigma^{-1} H)^T + 2 (H^T \Sigma^{-1} H) \mathbf{x}$
+$\frac{\partial J(\mathbf{x})}{\partial \mathbf{x}} = -2 H^T \Sigma^{-1} \mathbf{y} + 2 (H^T \Sigma^{-1} H) \mathbf{x}$
 
 令梯度为零：
-$ -2 H^T \Sigma^{-1} \mathbf{y} + 2 (H^T \Sigma^{-1} H) \mathbf{x} = \mathbf{0} $
-$ (H^T \Sigma^{-1} H) \mathbf{x} = H^T \Sigma^{-1} \mathbf{y} $
+$-2 H^T \Sigma^{-1} \mathbf{y} + 2 (H^T \Sigma^{-1} H) \mathbf{x} = \mathbf{0}$
+$(H^T \Sigma^{-1} H) \mathbf{x} = H^T \Sigma^{-1} \mathbf{y}$
 
 **第四步：求解 $\mathbf{x}$**
 
 这个方程组称为**正规方程（Normal Equations）**。如果矩阵 $(H^T \Sigma^{-1} H)$ 是可逆的（通常当 $H$ 是列满秩且 $m \ge n$ 时成立），我们可以直接求解 $\mathbf{x}$。
 
-$ \mathbf{x}^* = (H^T \Sigma^{-1} H)^{-1} H^T \Sigma^{-1} \mathbf{y} $
+$\mathbf{x}^* = (H^T \Sigma^{-1} H)^{-1} H^T \Sigma^{-1} \mathbf{y}$
 
 这就是基于多维高斯分布的最小二乘问题的解析解。
 
@@ -117,10 +116,10 @@ $ W\mathbf{y} = W H \mathbf{x} + W\mathbf{v} $
 
 令 $\mathbf{y}' = W\mathbf{y}$, $H' = WH$, $\mathbf{v}' = W\mathbf{v}$。
 新的模型是：
-$ \mathbf{y}' = H' \mathbf{x} + \mathbf{v}' $
+$\mathbf{y}' = H' \mathbf{x} + \mathbf{v}'$
 
 现在我们来考察新噪声 $\mathbf{v}'$ 的协方差：
-$ \text{Cov}(\mathbf{v}') = E[\mathbf{v}' (\mathbf{v}')^T] = E[W\mathbf{v} (W\mathbf{v})^T] = E[W\mathbf{v}\mathbf{v}^T W^T] $
+$\text{Cov}(\mathbf{v}') = E[\mathbf{v}' (\mathbf{v}')^T] = E[W\mathbf{v} (W\mathbf{v})^T] = E[W\mathbf{v}\mathbf{v}^T W^T]$
 $ = W E[\mathbf{v}\mathbf{v}^T] W^T = W \Sigma W^T = W (L L^T) W^T = (W L)(W L)^T $
 因为 $W=L^{-1}$，所以 $WL=I$。
 $ = I I^T = I $
