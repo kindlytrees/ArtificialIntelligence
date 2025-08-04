@@ -22,6 +22,6 @@
 - [课程视频](https://space.bilibili.com/505620745/lists/5906077)
 - [实验手册](./artificial_intelligence/robotics/slam/)
 
-### 教学用操作系统RISC-V xv实现分析
+### 教学用操作系统RISC-V xv6实现分析
 - [课程视频](https://space.bilibili.com/505620745/lists/5980631)
 - [实验手册](./software_engineering_practices/riscv-xv6/)
