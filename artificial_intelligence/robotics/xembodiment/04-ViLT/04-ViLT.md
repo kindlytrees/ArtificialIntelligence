@@ -32,9 +32,6 @@ sequence $z^D . p$ is a pooled representation of the whole multimodal input, and
 - 请具体描述IPOT的ITMLoss的计算细节，如Wasserstein距离以及相关传输矩阵的定义和用法等
 ipot计算了传输矩阵，并提前做了转置，以便后续和成本矩阵相乘，其结果的对角线上的值为对应的token传输所带来的loss
 
-
-
-
 - ipot实现分析解读,计算成本矩阵 C 对应的最优传输矩阵 T
 
 ```
@@ -70,10 +67,6 @@ def ipot(C, x_len, x_pad, y_len, y_pad, joint_pad, beta, iteration, k):
     T.masked_fill_(joint_pad, 0)
     return T
 ```
-
-
-
-
 
 ## 参考资料
 - RT-1训练数据：https://console.cloud.google.com/storage/browser/gresearch/rt-1-data-release

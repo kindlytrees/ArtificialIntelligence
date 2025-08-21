@@ -27,6 +27,6 @@
     - 后端2：pose graph，位姿图优化，因子图优化等
 - 回环检测
     - 图像中基于bow的方法
-    - cartographer中采用采用的匹配搜素的方式（基于激光点云）
+    - cartographer中采用的匹配搜素的方式（基于激光点云）
 
 - 参考实验：https://github.com/gaoxiang12/slambook
