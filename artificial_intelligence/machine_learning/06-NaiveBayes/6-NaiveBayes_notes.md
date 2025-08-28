@@ -47,7 +47,7 @@ $$
 
 $$
 \begin{aligned}
-p= & p\left(p_1, p_2, \cdots p_k\right), \sum_{i=1}^k p_i=1 \\
+p= p\left(p_1, p_2, \cdots p_k\right), \sum_{i=1}^k p_i=1 \\
 & \sum_{i=1}^k x_i=n \\
 p\left(x=\left(x_1, x_2, \cdots x_k\right)\right)= & \frac{n!} 
 {x_{1}!x_{2}!\cdots x_{k}!}  p_1^{x_1} p_2^{x_2} \cdots p_k^{x_k}

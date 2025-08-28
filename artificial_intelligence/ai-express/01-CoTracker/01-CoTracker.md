@@ -1,0 +1,19 @@
+# CoTracker
+
+## 简要总结CoTracker的实现方法和思路的核心要点
+
+- 通过卷积提取图像视觉特征(可以多尺度)，点在连续帧上的串联构成track，
+- 通过视觉特征，点的track特征，以及点和周围block的相关性特征，以及点的空间和时间位置构成的positional embeddings信息等transformer的输入tokens，基于窗口内的空间和时间的点tracks，采用了virtual tokens进行了加速计算
+- 同时采用了iterative transforms实现了多次迭代优化求解位置变化，并给予unrolled的串联方式最后总体求loss，unrolled的参数共享
+- 加入support points支持联合tracking以优化tracking结果
+- 视频帧转化为窗口进行tracking，窗口间有一般overlap，实现信息的传递
+
+
+## cotraker算法在训练的过程中加入了support points吗，support points和一般人为标记的points在图像局部特征上可能存在不同的分布特性，如果在训练时不加入一起训练，有可能会在推理的时候加入support points会带来一些意想不到的效果？
+
+## TAP-Vid中的标注的点有哪些（如何标注，标注的方法）是否涵盖了点的各种可能的局部图像特征，包括点之间的图像特征，一般点的跟踪是否主要还是局部特征较为明显，而transformer并没有考虑点之间的距离远近，这样是否会给训练带来一些可能的困难？
+
+## CoTracker中的virtual tokens的作用以及实现，代码实现中virtual tokens和论文中的proxy tokens对应的对吗？为什么用不同的名称？
+
+同一帧图像中的多个点对应着空间上的tokens，窗口内的多帧结果拼接起来会又在时间上串起来更长的tokens序列，这样会存在着大量的计算
+virtual(proxy) tokens为一张加速计算的方式
