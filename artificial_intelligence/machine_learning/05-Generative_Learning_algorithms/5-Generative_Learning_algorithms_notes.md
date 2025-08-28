@@ -23,7 +23,7 @@ $$
 $$
 \begin{aligned}
 & \frac{\partial l}{\partial u_0}= \frac{\partial}{\partial u_0}\left[\sum_{i=1}^n \log p\left(x^{(i)} \mid y(i) ; u_0 u_1, \Sigma\right)\right] \\
-&=\left.\frac{\partial}{\partial u_0}\left[\sum_{i=1}^n 1\left(y^{(i)}\right)=0\right) \log p\left(x^{(i)} \mid y(i) ; u_0, \Sigma\right)\right] \\
+&=\left.\frac{\partial}{\partial u_0}\left[\sum_{i=1}^n \left(1\left(y^{(i)}\right)=0\right) \log p\left(x^{(i)} \mid y(i) ; u_0, \Sigma\right)\right)\right] \\
 &= \frac{\partial}{\partial u_0}\left(\sum_{i=1}^n 1\left(y^{(i)}=0\right) \log \frac{1}{(2 \pi)^{d / 2}|\Sigma|^{1 / 2}} \exp \left(-\frac{1}{2}\left(x^{(i)}-u_0\right)^{\top} \Sigma^{-1}\left(x^{(i)}-u_0\right)\right)\right. \\
 &= \frac{\partial}{\partial u_0}\left(\sum _ { i = 1 } ^ { n } 1 ( y ^ { ( i ) } = 0 ) \operatorname { l o g } \left(\frac{1}{c}+\log \exp \left(-\frac{1}{2}\left(x^{(i)}-u_0\right) \Sigma^{\top} \Sigma^{-1}\left(x^{(i)}-u_0\right)\right)\right)\right) \\
 &= \frac{\partial}{\partial u_0}\left[\sum_{i=1}^n 1\left(y^{(i)}=0\right)-\frac{1}{2}\left(x^{(i)}-u_0\right)^{\top} \Sigma^{-1}\left(x^{(i)}-u_0\right)\right] \\
@@ -86,16 +86,12 @@ $$
 & d f=\operatorname{tr}\left(G^{\top} d \Sigma\right) \\
 & \frac{d f}{d \Sigma}=G \quad(\text { 根据迹的定义可以展开证明 }) \\
 & \operatorname{tr}\left(-\Sigma^{-1} \cdot S \cdot \Sigma^{-1} \cdot d \Sigma\right)=d f \\
-& \quad \begin{aligned}
-G^{\top} & =-\Sigma^{-1} S \Sigma^{-1} \\
-G & =\left(-\Sigma^{-1} S \Sigma^{-1}\right)^{\top}=-\left(\Sigma^{-1} S \cdot \Sigma^{-1}\right)^{\top} \\
+& G^{\top} =-\Sigma^{-1} S \Sigma^{-1} \\
+& G =\left(-\Sigma^{-1} S \Sigma^{-1}\right)^{\top}=-\left(\Sigma^{-1} S \cdot \Sigma^{-1}\right)^{\top} \\
 & =-\left(\Sigma^{-1}\right)^{\top}\left(\Sigma^{-1} S\right)^{\top} \\
-& =-\Sigma^{-1} S^{\top} \Sigma^{-1}=-\Sigma^{-1} S \Sigma^{-1}
-\end{aligned} \\
-& \begin{aligned}
-\frac{\partial l_ \Sigma}{\partial \Sigma} & =-\frac{m}{2} \Sigma^{-1}+\frac{1}{2} \Sigma^{-1} \cdot S \Sigma^{-1}=0 \\
+& =-\Sigma^{-1} S^{\top} \Sigma^{-1}=-\Sigma^{-1} S \Sigma^{-1} \\
+& = \frac{\partial l_ \Sigma}{\partial \Sigma} =-\frac{m}{2} \Sigma^{-1}+\frac{1}{2} \Sigma^{-1} \cdot S \Sigma^{-1}=0 \\
 & \Rightarrow \Sigma=\frac{1}{m} S=\frac{1}{m} \sum_{i=1}^m\left(x_i-u_{y_i}\right)\left(x_i-u_{y_i}\right)^{\top}
-\end{aligned}
 \end{aligned}
 $$
 

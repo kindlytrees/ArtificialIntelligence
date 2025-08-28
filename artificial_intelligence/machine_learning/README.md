@@ -11,3 +11,9 @@
 - 聚类，KMeans，DBSCAN，Hierarchical Clustering
 - 优化方法：随机梯度下降，NewtonsMethod，采用(广义)拉格朗日乘数子求解(不)等值约束的优化问题，以及KKT条件
 - 学习理论，经验误差，泛化误差，样本量，假设空间，vc维，霍夫丁不等式
+
+## 实验环境
+
+```
+pip install scikit-learn
+```

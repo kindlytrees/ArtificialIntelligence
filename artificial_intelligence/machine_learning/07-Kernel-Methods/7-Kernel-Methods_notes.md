@@ -74,6 +74,7 @@ $$
 
 
 - 当属性为多元变量的高斯核函数
+
 $$
 \begin{aligned}
 & \phi(x, z)=\exp \left(-r \| x-z \|^2\right) \\

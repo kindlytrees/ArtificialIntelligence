@@ -6,7 +6,7 @@ import copy
 
 
 THETA = np.random.normal(0, 0.1, 3).reshape(3, 1) # learnable parameters
-# https://www.jianshu.com/p/069d8841bd8e make_blobs函数是为聚类产生数据集
+# make_blobs函数是为聚类产生数据集
 X, Y = make_blobs(n_samples=600, centers=2, n_features=2, random_state=3)
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.3, random_state=0)
 

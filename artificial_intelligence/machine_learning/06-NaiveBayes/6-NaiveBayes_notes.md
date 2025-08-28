@@ -32,15 +32,14 @@ $$
 $$
 \begin{aligned}
 & l=\sum_{i=1}^n\left[\log p(y(i))+\log p\left(x^{(i)} \mid y(i)\right)\right] \\
-& \begin{aligned}
-=\frac{\partial l}{\partial \phi_j \mid y=1} & =\sum_{i=1}^n 1(y(i)=1)\left[\log p(y(i))+\log p\left(x^{(i)} \mid y^{(i)}\right)\right] \\
+& =\frac{\partial l}{\partial \phi_j \mid y=1} \\
+& =\sum_{i=1}^n 1(y(i)=1)\left[\log p(y(i))+\log p\left(x^{(i)} \mid y^{(i)}\right)\right] \\
 & =\sum_{i=1}^n 1(y(i)=1) \log \prod _{k} p\left(x_k^{(i)} \mid y(i)\right) \\
 & =\sum_{i=1}^n 1\left(y^{(i)}=1\right) \sum_k \log p\left(x_k^{(i)} \mid y(i)\right) \\
 & =\sum_{i=1}^n 1\left(y^{(i)}=1\right)\left(\sum_{x_j=1} \log p\left(x_j^{(i)} \mid y(i)\right)+\sum_{x_j=0} \log p\left(x_j^{(i)} \mid y(i)\right)\right) \\
 & =\sum_{i=1}^n 1\left(y^{(i)}=1\right)\left(\sum_{x_j=1} \frac{1}{\phi_j \mid y=1}+\sum_{x_j=0} \frac{-1}{1-\phi_j \mid y=1}\right)=0 \\
 & \frac{s}{\phi_j \mid y=1}=\frac{t}{1-\phi_j \mid y=1} \\
 & {\phi_j \mid y=1} = \frac{s}{s+t} = \frac{\sum_{i=1}^n 1\left(y^{(i)}=1\right) \cdot 1\left(x_j^{(i)}=1\right)}{\sum_{i=1}^n 1\left(y^{(i)}=1\right)}.
-\end{aligned}
 \end{aligned}
 $$
 
