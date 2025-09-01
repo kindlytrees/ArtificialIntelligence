@@ -2,8 +2,11 @@
 
 - 因素分析中，x和z通过关系式$x = \mu +  \Lambda z + \epsilon$ 进行表示，z为均值为0，方差为 $\Psi$的隐向量分布
 - 因素分析中隐向量z通过lambda矩阵变换到观察空间，观察空间是一个维度更高的空间对吗? 把z也看成短向量的属性？构建条件概率得出z和x的变换关系，在实际使用时z未知，通过反变换求出z吗？
-  
-gemini辅助回答：
+- 因素分析是否可以看成是vae的mini或解析解法版本?其解释性更强，而vae的由于采用了神经网络深度学习的模型，其能量更大?
+
+gemini辅助回答摘要：
+
+因子分析（Factor Analysis）完全可以被看作是VAE(线性高斯世界的VAE)的一个线性的、有解析解的“迷你版本”
 
 观察空间是一个维度更高的空间。 因素分析的核心目标就是降维（dimensionality reduction）和结构发现（structure discovery）
 隐向量 (z): 是模型假设的、导致观测变量之间相关性的潜在因素。它的维度通常远低于观测变量的维度。
@@ -139,14 +142,14 @@ $$
 公示的推导说明
 $$
 \begin{aligned}
-& \left.\nabla_\Lambda \sum_{i=1}^n-E\left[\frac{1}{2}\left(x^{(i)}-u-\Lambda z^{(i)}\right)\right]^{\top} \Psi^{-1}\left(x^{(i)}-u-\Lambda z^{(i)}\right)\right] \\
-& =\sum_{i=1}^n \nabla_\Lambda E\left[\operatorname{tr}\left[\frac{1}{2}\left(\left(x^{(i)}-u\right)-\Lambda z^{(i)}\right)^{\top} \Psi^{-1}\left(\left(x^{(i)}-u\right)-\Lambda z^{(i)}\right)\right]\right. \\
-& =\sum_{i=1}^n \nabla_\Lambda E\left[-\frac{1}{2} \operatorname{tr}\left[-\left[\left(x^{(i)}-u\right)^{\top} \Psi^{-1} \Lambda z^{(i)}-\left(\Lambda z^{(i)}\right)^{\top} \Psi^{-1}\left(x^{(i)}-u\right)+\left(\Lambda z^{(i)}\right)^{\top} \Psi^{-1}\left(\Lambda z^{(i)}\right)\right.\right.\right. \\
-& \left.=\sum_{i=1}^n \nabla_\Lambda E\left[-\frac{1}{2} \operatorname{tr}\left[{z^{(i)}}^T \Lambda^{\top} \psi^{-1} \Lambda z^{(i)}\right)-2 \operatorname{tr} {z^{(i)}}^T \Lambda^{\top} \Psi^{-1}\left(x^{(i)}-u\right)\right]\right] \\
-& =\sum_{i=1}^n \nabla_\Lambda E\left[-\operatorname{tr} \frac{1}{2} \Lambda^{\top} \Psi^{-1} \Lambda z^{(i)} z^{(i) \top}+\operatorname{tr} \Lambda^{\top} \Psi^{-1}\left(x^{(i)}-u\right) z^{(i) \top}\right] \\
-& \nabla A^2 \operatorname{tr} A B A^{\top} C=C A B+C^{\top} A B^{\top} \quad \operatorname{tr} A B=\operatorname{tr} B A \quad \operatorname{tr} A B C=\operatorname{tr} B C A \\
-& \operatorname{tr} \frac{\Lambda^{\top} \Psi^{-1}}{A} \frac{\Lambda}{B} \frac{z^{(i)} {z^{(i)}}^T }{C}=\operatorname{tr} \frac{\Lambda}{B} \frac{z^{(i)} {z^{(i)}}^T}{C} \frac{\Lambda^{\top} \Psi^{-1}}{A}=\operatorname{tr} \frac{\Lambda}{A} \frac{z^{(i)}{(z^{(i)})^T}}{B} \frac{\Lambda^{T}}{A^T} \frac{\Psi^{-1}}{C} \\
-& =\frac{\Psi^{-1}}{C}  \frac{\Lambda}{A} \frac{z^{(i)} z^{(i)}}{B}^{\top}+\frac{\Psi^{-1} \Lambda\left(z^{(i)} (z^{(i)})^{\top}\right)^{\top}}{C^{\top} A B^{\top}} \\
+& \left.\nabla_{\Lambda} \sum_{i=1}^n-E\left[\frac{1}{2}\left(x^{(i)}-u-\Lambda z^{(i)}\right)\right]^{\top} \Psi^{-1}\left(x^{(i)}-u-\Lambda z^{(i)}\right)\right] \\
+& =\sum_{i=1}^n \nabla_{\Lambda} E\left[\operatorname{tr}\left[\frac{1}{2}\left(\left(x^{(i)}-u\right)-\Lambda z^{(i)}\right)^{\top} \Psi^{-1}\left(\left(x^{(i)}-u\right)-\Lambda z^{(i)}\right)\right]\right. \\
+& =\sum_{i=1}^n \nabla_{\Lambda} E\left[-\frac{1}{2} \operatorname{tr}\left[-\left[\left(x^{(i)}-u\right)^{\top} \Psi^{-1} \Lambda z^{(i)}-\left(\Lambda z^{(i)}\right)^{\top} \Psi^{-1}\left(x^{(i)}-u\right)+\left(\Lambda z^{(i)}\right)^{\top} \Psi^{-1}\left(\Lambda z^{(i)}\right)\right.\right.\right. \\
+& \left.=\sum_{i=1}^n \nabla_{\Lambda} E\left[-\frac{1}{2} \operatorname{tr}\left[z^{(i)^T} \Lambda^{\top} \psi^{-1} \Lambda z^{(i)}\right)-2 \operatorname{tr} z^{(i)^T} \Lambda^{\top} \Psi^{-1}\left(x^{(i)}-u\right)\right]\right] \\
+& =\sum_{i=1}^n \nabla_{\Lambda} E\left[-\operatorname{tr} \frac{1}{2} \Lambda^{\top} \Psi^{-1} \Lambda z^{(i)} z^{(i) \top}+\operatorname{tr} \Lambda^{\top} \Psi^{-1}\left(x^{(i)}-u\right) z^{(i) \top}\right] \\
+& \nabla_ A \operatorname{tr} A B A^{\top} C=C A B+C^{\top} A B^{\top} \operatorname{tr} A B=\operatorname{tr} B A \quad \operatorname{tr} A B C=\operatorname{tr} B C A \\
+& \operatorname{tr} \frac{\Lambda^{\top} \Psi^{-1}}{A} \frac{\Lambda}{B} \frac{z^{(i)} z^{(i)}{ }^T}{C}=\operatorname{tr} \frac{\Lambda}{B} \frac{z^{(i)} z^{(i)}{ }^T}{C} \frac{\Lambda^{\top} \Psi^{-1}}{A}=\operatorname{tr} \frac{\Lambda}{A} \frac{z^{(i)}\left(z^{(i)}\right)^T}{B} \frac{\Lambda^T}{A^T} \frac{\Psi^{-1}}{C} \\
+& =\frac{\Psi^{-1}}{C} \frac{\Lambda}{A} \frac{z^{(i)} z^{(i)}}{B}+\frac{\Psi^{-1} \Lambda\left(z^{(i)}\left(z^{(i)}\right)^{\top}\right)^{\top}}{C^{\top} A B^{\top}} \\
 & =2 \Psi^{-1} \Lambda z^{(i)} z^{(i) T}
 \end{aligned}
 $$
