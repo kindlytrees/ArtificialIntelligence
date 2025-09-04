@@ -57,3 +57,6 @@ $$
 \nabla_{\theta^{(k)}} J(\theta) = - \sum_{i=1}^{m}{ \left[ x^{(i)} \left( 1\{ y^{(i)} = k\}  - P(y^{(i)} = k | x^{(i)}; \theta) \right) \right]  }
 \end{align}
 $$
+
+Softmax的损失函数是真实标签分布 (one-hot) 与模型预测概率分布之间的交叉熵。最小化这个损失，就是让模型的预测尽可能地匹配真实情况。
+Softmax回归的损失函数确实可以从两个等价但视角不同的角度来理解：最大似然估计 (Maximum Likelihood Estimation, MLE) 和 信息论中的交叉熵 (Cross-Entropy)

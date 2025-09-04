@@ -1,6 +1,6 @@
 # Factor Analysis Note
 
-- 因素分析中，x和z通过关系式$x = \mu +  \Lambda z + \epsilon$ 进行表示，z为均值为0，方差为 $\Psi$的隐向量分布
+- 因素分析中，x和z通过关系式 $x = \mu +  \Lambda z + \epsilon$ 进行表示，z为均值为0，方差为 $\Psi$的隐向量分布
 - 因素分析中隐向量z通过lambda矩阵变换到观察空间，观察空间是一个维度更高的空间对吗? 把z也看成短向量的属性？构建条件概率得出z和x的变换关系，在实际使用时z未知，通过反变换求出z吗？
 - 因素分析是否可以看成是vae的mini或解析解法版本?其解释性更强，而vae的由于采用了神经网络深度学习的模型，其能量更大?
 
@@ -140,6 +140,7 @@ $$
 $$
 
 公示的推导说明
+
 $$
 \begin{aligned}
 & \left.\nabla_{\Lambda} \sum_{i=1}^n-E\left[\frac{1}{2}\left(x^{(i)}-u-\Lambda z^{(i)}\right)\right]^{\top} \Psi^{-1}\left(x^{(i)}-u-\Lambda z^{(i)}\right)\right] \\

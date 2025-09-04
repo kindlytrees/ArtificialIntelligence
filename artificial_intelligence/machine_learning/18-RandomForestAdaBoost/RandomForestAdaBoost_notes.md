@@ -1,4 +1,6 @@
-# Random Forest and AdaBoost
+# Ensemble Learing 1: Random Forest and AdaBoost
+
+Bagging（Bootstrap Aggregating）, Boosting为集成学习算法系列的两种主要主要框架思路方法分类
 
 将AdaBoost中的样本权重看作是**“样本量的多少”或者“虚拟的样本重复次数”**，是一个非常有效的理解方式。
 

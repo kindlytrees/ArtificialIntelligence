@@ -1,4 +1,4 @@
-# Nenual Network
+# Neural Network
 
 ## 激活函数的种类
 
@@ -97,9 +97,6 @@ $$
 & =\hat{y}-y
 \end{aligned}
 $$
-
-
-
 
 ## 参考资源
 
