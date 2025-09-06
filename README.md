@@ -8,7 +8,7 @@
 - [实验手册](./software_engineering_practices/riscv-xv6/)
 
 ### 数据结构与算法基础
-- [课程视频](https://space.bilibili.com/505620745/lists/5980631)
+- [课程视频](https://space.bilibili.com/505620745/lists/6187991)
 
 ## 人工智能算法基础核心知识分享
 

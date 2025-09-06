@@ -3,6 +3,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 from collections import defaultdict
 
+
+#在 CliffWalking-v1 环境中：
+#env.observation_space 是一个从 0 到 47 的离散整数空间（代表4x12网格中的每个位置）。
+#env.action_space.n 是 4（上、下、左、右）。
+
 # --- 1. Epsilon-Greedy 策略 ---
 def epsilon_greedy_policy(q_table, state, epsilon, env):
     """
@@ -82,6 +87,8 @@ def train(algorithm='q_learning', num_episodes=3000, alpha=0.1, gamma=0.99,
     主训练函数，增加了epsilon衰减。
     """
     env = gym.make("CliffWalking-v1")
+    # defaultdict 来自Python的 collections 模块，它是一种特殊的字典（dictionary）
+    # 尝试访问一个**不存在的键（key）**时，会调用默认工厂函数
     q_table = defaultdict(lambda: np.zeros(env.action_space.n))
     episode_rewards = []
     
