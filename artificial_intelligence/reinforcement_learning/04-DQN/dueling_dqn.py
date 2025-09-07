@@ -40,7 +40,6 @@ class VAnet(torch.nn.Module):
         Q = V + A - A.mean(1).view(-1, 1)  # Q值由V值和A值计算得到
         return Q
 
-
 class Qnet(torch.nn.Module):
     ''' 只有一层隐藏层的Q网络 '''
     def __init__(self, state_dim, hidden_dim, action_dim):
@@ -114,6 +113,8 @@ class DQN:
             max_next_q_values = self.target_q_net(next_states).gather(
                 1, max_action)
         else:
+            #如果一个Dueling DQN的实现代码中使用了策略二，那么它就是一个“Dueling DQN”，但不是一个“Dueling Double DQN”。
+            #而一个使用了策略一的实现，就是一个“Dueling Double DQN”，后者通常性能更好。
             max_next_q_values = self.target_q_net(next_states).max(1)[0].view(
                 -1, 1)
         q_targets = rewards + self.gamma * max_next_q_values * (1 - dones)

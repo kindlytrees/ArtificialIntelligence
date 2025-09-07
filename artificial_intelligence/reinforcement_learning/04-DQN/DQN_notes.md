@@ -14,7 +14,6 @@
 
 ## DQN的实现
 - 问题1：一般参数更新多少次，会将最新的q网络的参数同步到目标网络
-
 - 两个Q网络，1：参数更新的Q网络；2：目标网络，用于生成训练目标，用于训练真值的生成,算法伪代码如下：
 
 $$
@@ -33,3 +32,29 @@ $$
 &\text { end for }
 \end{aligned}
 $$
+
+## 标准DQN，Double DQN和Dueling DQN
+- 标准DQN，所有的DQN都由训练网络和目标网络组成，但是标准DQN中的动作选择和td_target的计算都是在目标网络进行
+- Double DQN
+    - Q网络在训练初期或面对未知状态时，其输出的Q值是不准确的，充满了噪声(reward是确定的，但是由于神经网络起始时参数的随机初始化，Q函数的输出结果是有随机性和噪声的)。max操作符会倾向于选择那些被偶然高估（due to estimation error）的动作的Q值。这意味着，即使所有动作的真实Q值都差不多，只要其中一个因为随机误差而显得稍高，max就会选中它，导致TD Target偏高（而实际上也许该Q值没有计算的这么高，导致训练不稳定）
+    - 将训练网络和目标网络作为两个独立的网络（目标网络是训练网络在过去的某个时间点的“快照”），一个动作在训练网络上被高估的概率，和它同时在目标网络上也被高估的概率，会小很多
+    - 通过这种“解耦”（decoupling），Double DQN有效地减少了因为估计误差而导致的Q值过高估计问题，这使得Q值的估计更加准确，学习过程更加稳定，最终通常能获得比标准DQN更好的性能和策略
+    - 下面的代码中使用了两种策略（策略一为if，为double dqn的实现，策略二为else，为一般dqn的实现），如果一个Dueling DQN的实现代码中使用了策略二，那么它就是一个“Dueling DQN”，
+    ```
+        if self.dqn_type == 'DoubleDQN':
+            max_action = self.q_net(next_states).max(1)[1].view(-1, 1)
+            max_next_q_values = self.target_q_net(next_states).gather(
+                1, max_action)
+        else:
+            #如果一个Dueling DQN的实现代码中使用了策略二，那么它就是一个“Dueling DQN”，但不是一个“Dueling Double DQN”。
+            #而一个使用了策略一的实现，就是一个“Dueling Double DQN”，后者通常性能更好。
+            max_next_q_values = self.target_q_net(next_states).max(1)[0].view(
+                -1, 1)
+    ```
+- Deuling DQN，上述的代码实现中，else部分为dueling dqn的实现，其不是一个“Dueling Double DQN”,而如果使用了策略一(if逻辑的)的实现，就是一个“Dueling Double DQN”，后者通常性能更好
+
+## 对实验代码实现的说明
+蒙特卡洛方法必须等待整个回合（episode）完全结束后，才能知道每一步最终带来了多少总回报（Return）。
+然后用这个真实、完整的回报来更新这个回合中经历过的所有状态的价值
+代码实现中是基于时序差分的在线学习，不用等待采样整个回合完成后才进行训练和更新，因此不属于蒙特卡洛采样方法。
+后续的内容策略梯度算法（REINFORCEMENT）就是基于完整回合的蒙特卡洛方法
