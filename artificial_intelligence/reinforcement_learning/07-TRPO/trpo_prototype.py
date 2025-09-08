@@ -107,7 +107,7 @@ class TRPO:
 
     def conjugate_gradient(self, grad, states, old_action_dists):  # 共轭梯度法求解方程
         x = torch.zeros_like(grad) #x为搜索的目标delta_theta
-        r = grad.clone() #r0初始化为kl的梯度
+        r = grad.clone() #r0初始化为代理目标函数的梯度
         p = grad.clone() #p0初始化搜索方向
         rdotr = torch.dot(r, r)
         for i in range(10):  # 共轭梯度主循环，求Hp，即Hessian矩阵和向量相乘
@@ -179,9 +179,10 @@ class TRPO:
 
         Hd = self.hessian_matrix_vector_product(states, old_action_dists,
                                                 descent_direction)
-        #PPT中的theta更新公式
+        #max_coef为最大系数beta的求解
         max_coef = torch.sqrt(2 * self.kl_constraint /
                               (torch.dot(descent_direction, Hd) + 1e-8))
+        #PPT中的theta更新公式，基于线性搜索
         new_para = self.line_search(states, actions, advantage, old_log_probs,
                                     old_action_dists,
                                     descent_direction * max_coef)  # 线性搜索

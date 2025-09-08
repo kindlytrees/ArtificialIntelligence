@@ -3,7 +3,7 @@
 - PPO实验中算法中的优势函数如何定义？
 直接根据td_delta进行计算，因为下一个状态的获取采用了 $ \theta' $ 策略对a进行采样的计算。将 $ A^{\theta^{\prime}}\left(s_t, a_t\right) $ 近似成了 $ A^{\theta}\left(s_t, a_t\right) $
 
-- PPO损失函数的由来
+- PPO代理目标函数的由来
 
 $$
 \begin{array}{ll}
@@ -16,7 +16,7 @@ J^{\theta^{\prime}}(\theta)=\mathbb{E}_{\left(s_t, a_t\right) \sim \pi_{\theta^{
 \end{array}
 $$
 
-- PPO中两种损失函数的定义
+- PPO中两种代理目标函数的定义
 
 $$
 L^{\text {PPO-Penalty }}(\theta)=E\left[r_t(\theta) A_t-\beta D_{\mathrm{KL}}\left(\pi_{\text {old }} \| \pi_\theta\right)\right]
