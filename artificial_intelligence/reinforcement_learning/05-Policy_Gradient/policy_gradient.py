@@ -63,7 +63,9 @@ class REINFORCE:
             action = torch.tensor([action_list[i]]).view(-1, 1).to(self.device)
             log_prob = torch.log(self.policy_net(state).gather(1, action))
             G = self.gamma * G + reward
-            loss = -log_prob * G  # 每一步的损失函数（G为从当前步骤开始到结束状态的折扣奖励和），负数最小对应着正数最大（期望的奖励不断提升），对应policy gradient 1.9和1.11部分的介绍，这里不是梯度，而是对数概率，公式里边还有一个梯度算子，这样和ppo的公式就统一了
+            loss = -log_prob * G  # 每一步的损失函数（G为从当前步骤开始到结束状态的折扣奖励和），负数最小对应着正数最大（期望回报不断提升）
+            # 对应policy gradient 这里基于期望回报最大化得出策略网络的梯度，即公式里有对log_prob的梯度计算
+            # 得出代理目标函数即为损失函数的最小化（log_prob不用显示求导数了），autograd机制能进行求解
             loss.backward()  # 反向传播计算梯度
         self.optimizer.step()  # 梯度下降
 

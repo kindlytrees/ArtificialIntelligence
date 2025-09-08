@@ -16,6 +16,16 @@ J^{\theta^{\prime}}(\theta)=\mathbb{E}_{\left(s_t, a_t\right) \sim \pi_{\theta^{
 \end{array}
 $$
 
+- PPO中两种损失函数的定义
+
+$$
+L^{\text {PPO-Penalty }}(\theta)=E\left[r_t(\theta) A_t-\beta D_{\mathrm{KL}}\left(\pi_{\text {old }} \| \pi_\theta\right)\right]
+$$
+
+$$
+L^{\mathrm{CLIP}}(\theta)=E_t\left[\min \left(r_t(\theta) A_t, \operatorname{clip}\left(r_t(\theta), 1-\epsilon, 1+\epsilon\right) A_t\right)\right]
+$$
+
 - 上述内容在代码中的体现：
     - 在求解两个采样的重要性比重的时候，除法变换为对数的减法，然后用指数函数进行还原
     - 梯度裁剪用到了torch.clamp函数

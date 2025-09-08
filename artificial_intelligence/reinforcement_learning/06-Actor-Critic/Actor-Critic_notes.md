@@ -1,5 +1,10 @@
 # Actor Critic Notes
 
+## 知识要点
+- actor为策略网络，critic在此实现为价值网络，其损失函数为mse，目标值为基于值函数的一步时间差分
+- 同策略网络，样本数据在线采集只使用一次
+- 梯度权重为优势函数(定义为价值函数的增量估计)
+
 ## 策略梯度中权重的可能的形式
 
 $g=\mathbb{E}\left[\sum_{t=0}^T \psi_t \nabla_\theta \log \pi_\theta\left(a_t \mid s_t\right)\right]$
@@ -7,7 +12,7 @@ $g=\mathbb{E}\left[\sum_{t=0}^T \psi_t \nabla_\theta \log \pi_\theta\left(a_t \m
 $$
 \begin{aligned}
 & \sum_{t^{\prime}=0}^T \gamma^{t^{\prime}} r_{t^{\prime}} //轨迹的总回报;\\
-& \sum_{t^{\prime}=t}^T \gamma^{t^{\prime}-t} r_{t^{\prime}} //动作 a_t 之后能回报；\\
+& \sum_{t^{\prime}=t}^T \gamma^{t^{\prime}-t} r_{t^{\prime}} //动作 a_t 之后总回报；\\
 & \sum_{t^{\prime}=t}^T \gamma^{t^{\prime}-t} r_{t^{\prime}}-b\left(s_t\right) //基准线版本的改进；\\
 & Q^{\pi_\theta}\left(s_t, a_t\right) ：动作价值函数 \\
 & A^{\pi_\theta}\left(s_t, a_t\right) ：优势函数 \\

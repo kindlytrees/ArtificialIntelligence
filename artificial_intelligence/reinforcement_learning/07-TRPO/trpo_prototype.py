@@ -234,7 +234,6 @@ save_dir = './outputs'
 os.makedirs(save_dir, exist_ok=True)
 weights_path = os.path.join(save_dir, 'agent.pth')
 
-
 env_name = 'CartPole-v1'
 env = gym.make(env_name, render_mode='human')
 env.reset(seed=0)
