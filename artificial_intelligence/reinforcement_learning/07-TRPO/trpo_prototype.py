@@ -175,17 +175,17 @@ class TRPO:
         grads = torch.autograd.grad(surrogate_obj, self.actor.parameters())
         obj_grad = torch.cat([grad.view(-1) for grad in grads]).detach()
         # 用共轭梯度法计算x = H^(-1)g
-        descent_direction = self.conjugate_gradient(obj_grad, states, old_action_dists)
+        ascent_direction = self.conjugate_gradient(obj_grad, states, old_action_dists)
 
         Hd = self.hessian_matrix_vector_product(states, old_action_dists,
-                                                descent_direction)
+                                                ascent_direction)
         #max_coef为最大系数beta的求解
         max_coef = torch.sqrt(2 * self.kl_constraint /
-                              (torch.dot(descent_direction, Hd) + 1e-8))
+                              (torch.dot(ascent_direction, Hd) + 1e-8))
         #PPT中的theta更新公式，基于线性搜索
         new_para = self.line_search(states, actions, advantage, old_log_probs,
                                     old_action_dists,
-                                    descent_direction * max_coef)  # 线性搜索
+                                    ascent_direction * max_coef)  # 线性搜索
         torch.nn.utils.convert_parameters.vector_to_parameters(
             new_para, self.actor.parameters())  # 用线性搜索后的参数更新策略
 

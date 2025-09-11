@@ -2,7 +2,7 @@
 
 ## 知识要点
 - 优势函数的定义（GAE，Generalized Advantage Estimation, GAE）中使用到了多步时间差分
-- KL损失函数定义为Reverse KL divergence
+- KL损失函数定义为Forward KL divergence, 且度量KL损失函数的方式为针对相同的states输入输出不同的actions的概率分布的KL散度，而不是直接在参数空间计算向量差的L2 norm
 - 转化为基于广义拉格朗日乘数子求解基于二次约束下的线性优化问题
 - 采用共轭梯度的方式迭代计算更新方向，采用Hp相结合绕开直接计算Hessian矩阵
 - 基于异策略的在线数据采集方式，基于重要性采样机制来实现数据样本的多次复用，提升训练效率
@@ -10,7 +10,7 @@
 
 ## 具体详细内容
 
-- 目标损失函数
+- 代理目标函数
 
 $$
 \operatorname{maximize} \mathbb{E}_{\pi_{\theta_{\text {old }}}}\left[\frac{\pi_\theta(a \mid s)}{\pi_{\theta_{\text {old }}}(a \mid s)} A_{\theta_{\text {old }}}(s, a)\right] \approx g^T\left(\theta-\theta_{old}\right)
@@ -22,7 +22,7 @@ $$
 \text { subject to } \mathbb{E}_{\pi_{\theta_{\text {old }}}}\left[D_{\mathrm{KL}}\left(\pi_{\theta_{\text {old }}} \| \pi_\theta\right)\right] \leq \delta \approx \frac{1}{2}\left(\theta-\theta_{old}\right)^T H\left(\theta-\theta_{old}\right)
 $$
 
-- 约束优化函数定义为
+- 基于约束条件的函数优化问题定义为
 
 $$
 \begin{aligned}
@@ -31,7 +31,7 @@ $$
 \end{aligned}
 $$
 
-- 约束优化函数定义简化表示为
+- 基于约束条件的函数优化问题简化为(二次约束的线性函数优化)
 
 $$
 \theta=\underset{\theta^{\prime}}{\arg \max } g^T\left(\theta-\theta_{old}\right) \quad \text { s.t. } \quad \frac{1}{2}\left(\theta-\theta_{old}\right)^T H\left(\theta-\theta_{old}\right) \leq \delta
