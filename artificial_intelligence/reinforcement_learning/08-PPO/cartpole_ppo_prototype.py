@@ -65,6 +65,7 @@ class PPO:
         dones = torch.tensor(transition_dict['dones'],
                              dtype=torch.float).view(-1, 1).to(self.device)
         #均为批量计算，不同时刻的统一处理
+        #是对Q(st,at)的单步估计
         td_target = rewards + self.gamma * self.critic(next_states) * (1 -
                                                                        dones) #td即为时间差分的迭代去获取Q（动作价值）函数更新
         td_delta = td_target - self.critic(states) #更新的delta，td_delta反应了当前状态下的动作相比于平均的动作价值的优势（价值函数为当前动作价值函数的期望值）

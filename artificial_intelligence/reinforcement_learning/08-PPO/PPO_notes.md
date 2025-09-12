@@ -1,7 +1,9 @@
 # Proximal Policy Optimization
 
+在 PPO (Proximal Policy Optimization) 算法中，这个词的核心含义是：在进行策略优化（Policy Optimization）时，我们强制要求新的策略不能离旧的策略太远，必须保持在旧策略的一个“邻近区域”（Proximal Region）内，比如对目标函数进行裁剪，或基于KL损失的惩罚来限制其变化不要太大。
+
 - PPO实验中算法中的优势函数如何定义？
-直接根据td_delta进行计算，因为下一个状态的获取采用了 $ \theta' $ 策略对a进行采样的计算。将 $ A^{\theta^{\prime}}\left(s_t, a_t\right) $ 近似成了 $ A^{\theta}\left(s_t, a_t\right) $
+由于actor-critic框架中的critic为值函数，而优势函数的定义为A(s,a)=Q(s,a)-V(s)，Q(s,a)采用的是rt+γV(st+1)形式的单步估计，代码实现中直接根据td_delta进行计算估计优势函数
 
 - PPO代理目标函数的由来
 
