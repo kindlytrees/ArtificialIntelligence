@@ -1,5 +1,10 @@
 # Neural Network
 
+## 知识要点
+- batch_size的样本结果要除以batch_size形成平均梯度，得出更加准确稳定的更新方向，样本的求和体现在矩阵的计算里边
+- 
+
+
 ## 激活函数的种类
 
 - logistic funciton
@@ -86,11 +91,11 @@ $$
 
 $$
 \begin{aligned}
-& p(x, \hat{y})={\hat{y}}^{y}(1-\hat y)^{(1-y)} \\
-& \log p(x, \hat{y})  =y \log \hat{y}+(1-y) \log (1-\hat{y}) \\
-& J = (y \log \hat{y}+(1-y) \log (1-\hat{y})) \\
-& = \frac{\partial J}{\partial z_{4}} =\frac{\partial J}{\partial a_4} \cdot \frac{\partial a_4}{\partial z_4} \\
-& =-\left[y \frac{1}{\hat y}+(1-y) \frac{1}{(1-\hat{y})} \times(-1)\right] (\hat{y})(1-\hat{y}) \\
+& p(x, \hat{y})=\hat{y}^y(1-\hat{y})^{(1-y)} \\
+& \log p(x, \hat{y})=y \log \hat{y}+(1-y) \log (1-\hat{y}) \\
+& J=-(y \log \hat{y}+(1-y) \log (1-\hat{y})) \\
+& =\frac{\partial J}{\partial z_4}=\frac{\partial J}{\partial a_4} \cdot \frac{\partial a_4}{\partial z_4} \\
+& =-\left[y \frac{1}{\hat{y}}+(1-y) \frac{1}{(1-\hat{y})} \times(-1)\right](\hat{y})(1-\hat{y}) \\
 & =\left(-y \frac{1}{\hat{y}}+(1-y) \frac{1}{(1-\hat{y})}\right)(\hat{y})(1-\hat{y}) \\
 & =-y(1-\hat{y})+(1-y) \hat{y} \\
 & =-y+y \hat{y}+\hat{y}-y \hat{y} \\

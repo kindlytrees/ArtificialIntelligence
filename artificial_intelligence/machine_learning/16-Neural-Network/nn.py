@@ -122,8 +122,13 @@ class NeuralNetwork(object):
         #print(x.shape)
         y_hat = self.forward_propagation(x)
         #dz4 = (y_hat-y)*self.sigmoid_derivative(self.z4)
+        # 批量样本直接是向量的计算
         dz4 = y_hat-y
+        # 样本求和体现在矩阵里，体现在单个样本的向量的外积形成的矩阵
+        # 多个样本则为多个这样的矩阵求和
+        # 在实现时，也可以看成多个样本形成的矩阵和矩阵的乘积（矩阵乘积运算的一种解释即为对应的列向量和行向量的外积之和）
         dW3 = np.dot(dz4,self.a3.T)/self.batch_size
+        # 对于偏置梯度 db，则直接对误差矩阵 dZ 跨样本维度求平均即可
         db3 = np.mean(dz4,axis=1,keepdims=True)
         #print(dz4.shape, db3.shape, dW3.shape)
         
