@@ -22,7 +22,7 @@ $$
 
 $$
 \begin{aligned}
-& \nabla_{\theta^{(k)}} J(\theta)=-\sum_{i=1}^m 1\left\{y^{(i)}=k\right\} \log \frac{\exp \left(\theta^{(k) T} T^{(i)}\right)}{\sum_{j=1}^k \exp \left(\theta^{(j)} T^{(i)} x^{(i)}\right)}  +\left(-\sum_{i=1}^m 1\left(y^{(i)} \neq k\right) \log \frac{\exp \left(\theta^{\left(y^{(i)}\right) \top} \chi^{(i)}\right.}{\sum_{j=1}^k \exp \left(\theta^{(j)^{\top}} \chi^{(i)}\right)}\right)
+& \nabla_{\theta^{(k)}} J(\theta)=\nabla_{\theta^{(k)}}\left(-\sum_{i=1}^m 1\left\{y^{(i)}=k\right\} \log \frac{\exp \left(\theta^{(k) T} T^{(i)}\right)}{\sum_{j=1}^k \exp \left(\theta^{(j)} T^{(i)} x^{(i)}\right)}  +\left(-\sum_{i=1}^m 1\left(y^{(i)} \neq k\right) \log \frac{\exp \left(\theta^{\left(y^{(i)}\right) \top} \chi^{(i)}\right.}{\sum_{j=1}^k \exp \left(\theta^{(j)^{\top}} \chi^{(i)}\right)}\right)\right)
 \end{aligned}
 $$
 

@@ -10,7 +10,7 @@ $$
 
 $$
 \begin{aligned}
-& \frac{\partial }{\partial \theta_j}l(\theta)=-\sum_{i=1}^n (y_i \frac {1} {\sigma( \theta ^T x_i)} -(1-y_i) \frac {1}{1-\sigma(\theta ^Tx_i)})\frac {\partial} {\partial \theta_j}g(\theta ^T x_i) \\
+& \frac{\partial }{\partial \theta_j}L(\theta)=-\sum_{i=1}^n (y_i \frac {1} {\sigma( \theta ^T x_i)} -(1-y_i) \frac {1}{1-\sigma(\theta ^Tx_i)})\frac {\partial} {\partial \theta_j}g(\theta ^T x_i) \\
 = & -\sum_{i=1}^n (y \frac {1} {\sigma( \theta ^T x_i)} -(1-y) \frac {1}{1-\sigma(\theta ^Tx_i)})\sigma(\theta ^T x_i)(1-\sigma(\theta ^Tx_i))\frac {\partial}{\partial \theta_j} \theta ^Tx_i \\
 = & -\sum_{i=1}^n (y_i(1-\sigma(\theta ^Tx_i))-(1-y_i)\sigma(\theta ^T x_i))x_i^{(j)} \\
 = & -\sum_{i=1}^n (y_i-\sigma(\theta ^Tx_i))x_i^{(j)} \\
