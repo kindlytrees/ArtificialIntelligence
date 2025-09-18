@@ -43,7 +43,6 @@ V(s) & =\mathbb{E}\left[G_t \mid s_t=s\right] \\
 \end{aligned}
 $$
 
-
 $$
 \begin{aligned}
 \mathbb{E}\left[\mathbb{E}\left[G_{t+1} \mid s_{t+1}\right] \mid s_t\right] & =\mathbb{E}\left[\mathbb{E}\left[g^{\prime} \mid s^{\prime}\right] \mid s\right]  \\

@@ -1,6 +1,17 @@
 # Lie Group and Lie Algebra notes
 
+## Outline
+- 关键知识点
+- 相关问题
+    - 指数映射的展开
+    - 雅可比矩阵的一些相关计算及理解
+    - BCH的推导
+    - 李代数的导数和扰动模型的区别的理解
+    - 请给出从BCH一阶近似得出雅可比积分公式的详细推导
+
 - 雅可比的理解:SO(3)的左雅可比。这个公式正是描述了在李代数中，一个小的增量 δφ 如何通过左乘的方式疊加到现有向量 φ 上。
+
+假设李代数的参数空间为 $\theta$, 能否直接基于级数展开推导出Jl
 
 $$
 \exp \left((\phi+\Delta \phi)^{\wedge}\right)=\exp \left(\left(J_l \Delta \phi\right)^{\wedge}\right) \exp \left(\phi^{\wedge}\right)=\exp \left(\phi^{\wedge}\right) \exp \left(\left(J_r \Delta \phi\right)^{\wedge}\right)
@@ -19,15 +30,6 @@ $$
 
 - Sim(3)变换群的相关理解和应用
 主要用在单目场景下，解决尺度缩放的问题，基于回环检测的结果进行矫正，orbslam3代码中有实现
-
-## Outline
-- 关键知识点
-- 相关问题
-    - 指数映射的展开
-    - 雅可比矩阵的一些相关计算及理解
-    - BCH的推导
-    - 李代数的导数和扰动模型的区别的理解
-    - 请给出从BCH一阶近似得出雅可比积分公式的详细推导
 
 ### 问题
 

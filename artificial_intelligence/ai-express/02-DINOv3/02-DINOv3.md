@@ -3,14 +3,14 @@
 ## DINOv3的要点和关键创新思路想法
 - 采用SSL的蒸馏方法实现视觉基础模型
 - 学生网络和老师网络同样架构，老师网络为学生网络的EMA
-- 基于DINOv2以及相关的算法（聚类等）的data collection和curation 
+- 基于DINOv2以及相关的算法（聚类等）实现data collection和curation 
 - 加入了正则化koleo loss，使得patch的embedding向量的角度分布更加均匀，embedding的长度分布在一个范围内，主要是DINO的主损失函数来进行限制
 - 加入gram anchoring loss（gram teacher和main teacher，gram teacher在main teacher每更新10k个iteration后再更新参数）student的gram和gram teacher的gram matrix要对齐
 - 在多种视觉任务上表现出色
     - segmentation
     - depth estimation
     - video object(mask) tracking
-    - vidoe classifier
+    - video classifier
 
 ## dinov3等视觉基础模型，采用transformer架构，在输出的时候再将特征转化为二维的patch布局方式，一个patch大小为16*16，这样空间大小就成为原来的1/16了对吗，然后基于特征的pca还原到3维空间，并用rgb可视化出来后，得出的特征图看上去也挺清晰，每个patch的embedding的维度是否蕴含着该patch内更加丰富的细节信息，而这些信息如何去抵消掉16分之一的小采样带来的空间分辨率的损失呢？
 

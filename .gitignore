@@ -6,3 +6,5 @@ Untitled.ipynb
 *txt
 *.pyc
 *.pth
+build/
+3rdparty/

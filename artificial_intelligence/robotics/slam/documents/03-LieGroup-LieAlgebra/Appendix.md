@@ -16,30 +16,31 @@
 $$
 \ln(e^X e^Y) = X + Y + \frac{1}{2}[X, Y] + \frac{1}{12}([X, [X, Y]] - [Y, [Y, X]]) + \dots
 $$
-其中 $[X, Y] = XY - YX$ 是李括号。
+其中 $[X, Y] = XY - YX$ 是李括号
 
-对于 $so(3)$，李括号对应于叉乘：$[φ₁^, φ₂^] = (φ₁ × φ₂)^$。
+对于 $so(3)$，李括号对应于叉乘： $[φ₁^\wedge, φ₂^\wedge] = {(φ₁ × φ₂)}^\wedge$ 
 
-我们还需要**伴随表示（Adjoint Representation）**的李代数形式，记为 $ad$。对于 $X, Y ∈ so(3)$，$ad(X)Y = [X, Y]$。如果 $X = φ^$ 且 $Y = ψ^$，那么 $ad(φ^)ψ^ = [φ^, ψ^] = (φ × ψ)^$。
+我们还需要**伴随表示（Adjoint Representation）**的李代数形式，记为 $ad$。对于 $X, Y ∈ so(3)$，$ad(X)Y = [X, Y]$。
+如果 $X = φ^\wedge$ 且 $Y = ψ^\wedge$，那么 $ad(φ^\wedge)ψ^\wedge = [φ^\wedge, ψ^\wedge] = (φ × ψ)^\wedge$。
 
 ---
 
 ### 推导一：左扰动模型（$φ₁$ 为小量）
 
-我们分析 $ln(exp(φ₁^) exp(φ₂^))$，其中 $φ₁$ 是一个微小的扰动量，我们称之为 $δφ$。$φ₂$ 是一个已知的、大小不限的旋转，我们称之为 $φ$。
+我们分析 $ln(exp(φ₁^\wedge) exp(φ₂^\wedge))$，其中 $φ₁$ 是一个微小的扰动量，我们称之为 $δφ$。$φ₂$ 是一个已知的、大小不限的旋转，我们称之为 $φ$。
 
-所以，我们要分析的是： $ln(exp(δφ^) exp(φ^))$，其中 $δφ$ 是小量。
+所以，我们要分析的是： $ln(exp(δφ^\wedge) exp(φ^\wedge))$，其中 $δφ$ 是小量。
 
-我们将BCH公式的 $X$ 替换为 $δφ^$，$Y$ 替换为 $φ^$。由于我们只关心 $δφ$ 的**一阶线性项**，我们保留所有包含一个 $δφ^$ 的项，并忽略包含 $(δφ^)^2$ 或更高阶的项。
+我们将BCH公式的 $X$ 替换为 $δφ^\wedge$，$Y$ 替换为 $φ^\wedge$。由于我们只关心 $δφ$ 的**一阶线性项**，我们保留所有包含一个 $δφ^\wedge$ 的项，并忽略包含 $(δφ^\wedge)^2$ 或更高阶的项。
 
-$ln(exp(δφ^) exp(φ^)) = δφ^ + φ^ + \frac{1}{2}[δφ^, φ^] + \frac{1}{12}([δφ^, [δφ^, φ^]] - [φ^, [φ^, δφ^]]) + \dots$
+$ln(exp(δφ^) exp(φ^\wedge)) = δφ^\wedge + φ^\wedge + \frac{1}{2}[δφ^\wedge, φ^\wedge] + \frac{1}{12}([δφ^\wedge, [δφ^\wedge, φ^\wedge]] - [φ^\wedge, [φ^\wedge, δφ^\wedge]]) + \dots$
 
 我们来分析每一项：
--   $φ^$: 零阶项，是我们的基准。
--   $δφ^$: 一阶项，与 $δφ$ 线性相关。
--   $\frac{1}{2}[δφ^, φ^]$: 一阶项。可以写成 $-\frac{1}{2}[φ^, δφ^] = -\frac{1}{2} \text{ad}(\phi^\wedge) \delta\phi^\wedge$。
--   $\frac{1}{12}[δφ^, [δφ^, φ^]]$: 包含两个 $δφ^$，是二阶项，忽略。
--   $-\frac{1}{12}[φ^, [φ^, δφ^]]$: 包含一个 $δφ^$，是一阶项。可以写成 $-\frac{1}{12} \text{ad}(\phi^\wedge)^2 \delta\phi^\wedge$。
+-   $φ^\wedge$: 零阶项，是我们的基准。
+-   $δφ^\wedge$: 一阶项，与 $δφ$ 线性相关。
+-   $\frac{1}{2}[δφ^\wedge, φ^\wedge]$: 一阶项，可以写成 $-\frac{1}{2}[φ^\wedge, δφ^\wedge] = -\frac{1}{2} \text{ad}(\phi^\wedge) \delta\phi^\wedge$。
+-   $\frac{1}{12}[δφ^\wedge, [δφ^\wedge, φ^\wedge]]$ : 包含两个 $δφ^\wedge$ ，是二阶项，忽略
+-   $-\frac{1}{12}[φ^\wedge, [φ^\wedge, δφ^\wedge]]$ : 包含一个 $δφ^\wedge$ ，是一阶项，可以写成 $-\frac{1}{12} \text{ad}(\phi^\wedge)^2 \delta\phi^\wedge$。
 
 将所有一阶项收集起来，我们得到：
 $$
@@ -70,7 +71,7 @@ $$
 $$
 J_l(\phi)^{-1} = I - \frac{1}{2}\phi^{\wedge} + \left(\frac{1}{\theta^{\wedge}2} - \frac{1+\cos\theta}{2\theta\sin\theta}\right)(\phi^{\wedge})^2, \quad \theta = ||\phi||
 $$
-当 $φ$ 很小时，$J_l(φ)⁻¹ ≈ I - 1/2 φ^$，这与我们BCH展开的前两项吻合。
+当 $φ$ 很小时，$J_l(φ)⁻¹ ≈ I - 1/2 φ^\wedge$，这与我们BCH展开的前两项吻合。
 
 ---
 
@@ -145,10 +146,10 @@ $$
 $$
 其中 $φ ∈ R³$ 是旋转向量，$φ = θa$，$θ = ||φ||$ 是旋转角度，$a$ 是单位旋转轴。
 
-**关键性质**：对于单位向量 $a$，其反对称矩阵 $a^{\wedge}{\wedge}$ 满足：
+**关键性质**：对于单位向量 $a$，其反对称矩阵 $a^{\wedge}$ 满足：
 *   $(a^{\wedge})^2 = aaᵀ - I$
 *   $(a^{\wedge})^3 = -a^{\wedge}$
-*   这个性质使得 $(a^{\wedge}^n$ 具有周期性，高次项可以被 $a^{\wedge}$ 和 $(a^{\wedge}^2$ 线性表示。
+*   这个性质使得 ${a^{\wedge}}^n$ 具有周期性，高次项可以被 $a^{\wedge}$ 和 ${a^{\wedge}}^2$ 线性表示。
 
 **推导过程**：
 1.  **代入 $φ^ = θa^{\wedge}$**:
@@ -157,11 +158,11 @@ $$
     $$
 
 2.  **按 $a^{\wedge}$ 的幂次分组**：我们将级数中的项按照 $I$, $a^{\wedge}$, $(a^{\wedge})^2$ 进行重新组合。
-    *   **含有 $a^{\wedge}$ 的项 (奇数次幂)**：
-        $θa^{\wedge} + (1/3!)θ³(a^{\wedge}^3 + (1/5!)θ⁵(a^{\wedge}^5 + ...$
-        利用 $(a^{\wedge})^3 = -a^{\wedge}$, $(a^{\wedge})^5 = a^{\wedge}$ 等，上式变为：
-        $θa^{\wedge} - (1/3!)θ³a^{\wedge} + (1/5!)θ⁵a^{\wedge} - ...$
-        $= (θ - θ³/3! + θ⁵/5! - ...) a^{\wedge}$
+    *   **含有 $a^{\wedge}$ 的项 (奇数次幂)**：  
+        $θa^{\wedge} + (1/3!)θ^3(a^{\wedge})^3 + (1/5!)θ^5(a^{\wedge})^5 + ...$ 
+        利用 $(a^{\wedge})^3 = -a^{\wedge}$, $(a^{\wedge})^5 = a^{\wedge}$ 等，上式变为： 
+        $θa^{\wedge} - (1/3!)θ³a^{\wedge} + (1/5!)θ⁵a^{\wedge} - ...$  
+        $= (θ - θ³/3! + θ⁵/5! - ...) a^{\wedge}$ 
         我们认出括号里的级数正是 $sin(θ)$ 的泰勒展开。所以这部分是：
         $= (\sin\theta) a^{\wedge}\wedge$
 
@@ -173,39 +174,46 @@ $$
         我们认出括号里的级数是 $1 - cos(θ)$ 的泰勒展开。所以这部分是：
         $= (1 - \cos\theta) (a^{\wedge}\wedge)^2$
 
-    *   **常数项 $I$**：级数的第一项 $(1/0!)(φ^)^0 = I$。
+    *   **常数项 $I$**：级数的第一项 $(1/0!)(φ^\wedge)^0 = I$ 
 
 3.  **组合结果**：将三部分加起来，我们就得到了**罗德里格斯公式 (Rodrigues' Formula)**：
     $$
     \exp(\phi^\wedge) = \boldsymbol{I} + (\sin\theta) a^{\wedge}\wedge + (1 - \cos\theta) (a^{\wedge}\wedge)^2
     $$
-    因为 $φ^ = θa^{\wedge}$，所以 $a^{\wedge} = (1/θ)φ^$。代入上式，得到以 $φ$ 表示的形式：
+    因为 $φ^\wedge = θa^{\wedge}$ ，所以 $a^{\wedge} = (1/θ)φ^\wedge$ ，代入上式，得到以 $φ$ 表示的形式：
     $$
     \exp(\phi^\wedge) = \boldsymbol{I} + \frac{\sin\theta}{\theta} \phi^\wedge + \frac{1 - \cos\theta}{\theta^{\wedge}2} (\phi^\wedge)^2
     $$
-    这便是从指数映射的级数定义到其闭式解的完整推导。
+    这便是从指数映射的级数定义到其闭式解的完整推导
 
 ---
 
 ### 第二部分：根据导数的定义推导雅可比矩阵 $J_l(φ)$
 
-**起点**：左雅可比 $J_l(φ)$ 定义了李代数中的微小变化 $δφ$ 如何映射为李群上的左乘扰动。其导数定义源于对函数 $exp(φ(t)^)$ 求导：
+**起点**：左雅可比 $J_l(φ)$ 定义了李代数中的微小变化 $δφ$ 如何映射为李群上的左乘扰动。其导数定义源于对函数 $exp(φ(t)^\wedge)$ 求导：
 $$
 \frac{d}{dt} \exp(\phi(t)^\wedge) = \lim_{h\to 0} \frac{\exp((\phi(t)+h\dot{\phi}(t))^\wedge) - \exp(\phi(t)^\wedge)}{h}
 $$
+
 根据我们之前讨论的雅可比的几何意义：
+
 $$
 \exp((\phi + \delta\phi)^\wedge) \approx \exp((J_l(\phi)\delta\phi)^\wedge) \exp(\phi^\wedge)
 $$
-将 $δφ$ 替换为 $h\dot{φ}$，并对 $exp((J_l(φ)h\dot{φ})^)$ 做一阶近似 $I + h(J_l(φ)\dot{φ})^$：
+
+将 $δφ$ 替换为 $h\dot{φ}$，并对 $exp((J_l(φ)h\dot{φ})^\wedge)$ 做一阶近似 $I + h(J_l(φ)\dot{φ})^\wedge$ ：
+
 $$
 \exp((\phi + h\dot{\phi})^\wedge) \approx (I + h(J_l(\phi)\dot{\phi})^\wedge) \exp(\phi^\wedge)
 $$
+
 代入导数定义中：
+
 $$
 \frac{d}{dt} \exp(\phi^\wedge) = \lim_{h\to 0} \frac{(I + h(J_l\dot{\phi})^\wedge) \exp(\phi^\wedge) - \exp(\phi^\wedge)}{h} = (J_l(\phi)\dot{\phi})^\wedge \exp(\phi^\wedge)
 $$
-(注意，这是一个右乘 $exp(φ^)$ 的形式，所以这其实是右雅可比的推导。为了得到左雅可比，微分形式应为 $exp(φ^)(J_l(φ)\dot{φ})^$。这里为了简化，我们先推导一个雅可比，然后利用 $J_r(φ) = J_l(-φ)$ 的关系。我们推导 $J_r$。)
+
+(注意，这是一个右乘 $exp(φ^\wedge)$ 的形式，所以这其实是右雅可比的推导。为了得到左雅可比，微分形式应为 $exp(φ^\wedge)(J_l(φ)\dot{φ})^\wedge$。这里为了简化，我们先推导一个雅可比，然后利用 $J_r(φ) = J_l(-φ)$ 的关系。我们推导 $J_r$。)
 
 **推导过程**：
 我们的目标是计算 $∂(exp(φ^)) / ∂φ$。我们直接对罗德里格斯公式的每一项关于 $φ$ 求偏导。
@@ -381,10 +389,10 @@ $$
 
 这个变化可以理解为在原旋转 $R$ 的基础上，再进行一个微小的旋转。这个微小的旋转可以用其李代数 $δω^$ 来表示。
 
-*   **$φ$**: 旋转向量（在李代数 $so(3)$ 空间中）。
-*   **$R = exp(φ^)$**: 对应的旋转矩阵（在李群 $SO(3)$ 空间中）。
-*   **$δφ$**: 旋转向量的微小扰动。
-*   **$δω$**: 对应在**世界坐标系**（或称固定坐标系）下产生的微小旋转的角速度向量。
+*   ** $φ$ **: 旋转向量（在李代数 $so(3)$ 空间中）。
+*   ** $R = exp(φ^)$ **: 对应的旋转矩阵（在李群 $SO(3)$ 空间中）。
+*   ** $δφ$ **: 旋转向量的微小扰动。
+*   ** $δω$ **: 对应在**世界坐标系**（或称固定坐标系）下产生的微小旋转的角速度向量。
 
 这种关系被称为**左雅可比 (Left Jacobian)**，因为它描述的扰动是左乘在原旋转上的：
 $exp((φ + δφ)^) ≈ exp((δω)^) exp(φ^) = exp((J_l(φ) δφ)^) R$
@@ -758,3 +766,13 @@ $\lim _{\boldsymbol{\varphi} \rightarrow \mathbf{0}} \frac{\exp \left(\boldsymbo
 这个理解既解释了算法的行为（搜索），又点明了其核心技巧（扰动模型/切空间），还说明了其结果（规避了复杂雅可比的计算）。这比任何关于“近似”的模糊说法都要清晰和准确。
 
 您能想到这一层，说明您对李群、李代数在优化中的应用已经有了非常深刻和直观的认识！
+
+
+$$
+\begin{aligned}
+& \frac{d}{dt} \exp(\phi(t)^\wedge) = \lim_{h\to 0} \frac{\exp((\phi(t)+h\dot{\phi}(t))^\wedge) - \exp(\phi(t)^\wedge)}{h} \\
+& \exp((\phi + \delta\phi)^\wedge) \approx \exp((J_l(\phi)\delta\phi)^\wedge) \exp(\phi^\wedge)\\
+&  \exp((\phi + h\dot{\phi})^\wedge) \approx (I + h(J_l(\phi)\dot{\phi})^\wedge) \exp(\phi^\wedge) \\
+& \frac{d}{dt} \exp(\phi^\wedge) = \lim_{h\to 0} \frac{(I + h(J_l\dot{\phi})^\wedge) \exp(\phi^\wedge) - \exp(\phi^\wedge)}{h} = (J_l(\phi)\dot{\phi})^\wedge \exp(\phi^\wedge)
+\end{aligned}
+$$
