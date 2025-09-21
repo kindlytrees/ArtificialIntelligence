@@ -1,8 +1,9 @@
 # NonLinear Optimization notes
 
 ## Outline
-- 问题1：假设y和H，协方差已知，请给出如下的基于多维高斯分布的最小二乘x的解析解。
-- 问题2：非线性最小二乘和一般的最小二乘的求解方法，主要是迭代的过程中一个采用梯度下降，一个采用比梯度计算更优的方向进行参数更新，为什么不能直接求解析解，关键在于其过程是非线性方程对吗？
+- 问题1：非线性最小二乘和一般的最小二乘的求解方法，主要是迭代的过程中一个采用梯度下降，一个采用比梯度计算更优的方向进行参数更新，为什么不能直接求解析解，关键在于其过程是非线性方程对吗？优化目标定义为非线性函数（和线性回归中的最小二乘问题进行类比，线性回归中定义的函数为线性函数，参数变量空间和数据空间为线性关系，而在李群李代数表示的运动与观测方程中，观测结果，如图像中像素点与数据空间的关系为非线性的关系，表现为一，成像模型中要除以深度z，为非线性操作，二，欧式变换为约束高的SE(3)参数变量空间，其中的旋转变换约束为正交基且行列式为1的李群流形，或者其对应为的李代数的指数映射，也可以看成是对应到罗德里格斯公式去理解，其中的theta角度为李代数的模长，因此也引入了非线性）
+
+- 问题2：假设y和H，协方差已知，请给出如下的基于多维高斯分布的最小二乘x的解析解。
 
 $$
 \begin{gathered}
@@ -12,14 +13,13 @@ P(\boldsymbol{x})=\frac{1}{\sqrt{(2 \pi)^N \operatorname{det}(\boldsymbol{\Sigma
 \end{gathered}
 $$
 
-### 问题1：假设y和H，协方差已知，请给出如下的基于多为高斯分布的最小二乘x的解析解。
+### 问题1：假设y和H，协方差已知，请给出如下的基于多维高斯分布的最小二乘x的解析解。
 
 $(\vec{y}-H \vec{x})^{\top} \Sigma^{-1}(\vec{y}-H \vec{x})$
 
-
 辅助大模型回答：
 
-好的，我们来详细推导这个问题。这是一个非常经典的**加权最小二乘（Weighted Least Squares, WLS）**问题，其解在统计学、机器学习、机器人学（状态估计、SLAM）等领域有广泛应用。当噪声服从高斯分布时，最小二乘解等价于**最大似然估计（Maximum Likelihood Estimation, MLE）**。
+好的，我们来详细推导这个问题。这是一个非常经典的**加权最小二乘（Weighted Least Squares, WLS）**问题，其解在统计学、机器学习、机器人学（状态估计、SLAM）等领域有广泛应用。当噪声服从高斯分布时，最小二乘解等价于**最大似然估计（Maximum Likelihood Estimation, MLE）**
 
 ---
 
@@ -70,6 +70,7 @@ $J(\mathbf{x}) = (\mathbf{y} - H\mathbf{x})^T \Sigma^{-1} (\mathbf{y} - H\mathbf
 
 首先展开 $J(\mathbf{x})$:
 $J(\mathbf{x}) = (\mathbf{y}^T - \mathbf{x}^T H^T) \Sigma^{-1} (\mathbf{y} - H\mathbf{x})$
+
 $J(\mathbf{x}) = \mathbf{y}^T \Sigma^{-1} \mathbf{y} - \mathbf{y}^T \Sigma^{-1} H \mathbf{x} - \mathbf{x}^T H^T \Sigma^{-1} \mathbf{y} + \mathbf{x}^T H^T \Sigma^{-1} H \mathbf{x}$
 
 注意到标量项 $\mathbf{x}^T H^T \Sigma^{-1} \mathbf{y}$ 等于它的转置 $\mathbf{y}^T (\Sigma^{-1})^T H \mathbf{x}$。因为 $\Sigma$ 是对称的，所以 $\Sigma^{-1}$ 也是对称的，即 $(\Sigma^{-1})^T = \Sigma^{-1}$。因此：
@@ -84,11 +85,14 @@ $J(\mathbf{x}) = \mathbf{y}^T \Sigma^{-1} \mathbf{y} - 2 \mathbf{y}^T \Sigma^{-1
 
 在我们的问题中，$H^T \Sigma^{-1} H$ 是对称的。因此：
 $\frac{\partial J(\mathbf{x})}{\partial \mathbf{x}} = \frac{\partial}{\partial \mathbf{x}} (\mathbf{y}^T \Sigma^{-1} \mathbf{y}) - \frac{\partial}{\partial \mathbf{x}} (2 \mathbf{y}^T \Sigma^{-1} H \mathbf{x}) + \frac{\partial}{\partial \mathbf{x}} (\mathbf{x}^T H^T \Sigma^{-1} H \mathbf{x})$
+
 $\frac{\partial J(\mathbf{x})}{\partial \mathbf{x}} = \mathbf{0} - 2 (2 \mathbf{y}^T \Sigma^{-1} H)^T + 2 (H^T \Sigma^{-1} H) \mathbf{x}$
+
 $\frac{\partial J(\mathbf{x})}{\partial \mathbf{x}} = -2 H^T \Sigma^{-1} \mathbf{y} + 2 (H^T \Sigma^{-1} H) \mathbf{x}$
 
 令梯度为零：
 $-2 H^T \Sigma^{-1} \mathbf{y} + 2 (H^T \Sigma^{-1} H) \mathbf{x} = \mathbf{0}$
+
 $(H^T \Sigma^{-1} H) \mathbf{x} = H^T \Sigma^{-1} \mathbf{y}$
 
 **第四步：求解 $\mathbf{x}$**

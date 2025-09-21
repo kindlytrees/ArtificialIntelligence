@@ -36,8 +36,12 @@
 - [实验手册](./artificial_intelligence/robotics/xembodiment/)
 
 ## 主要参考资源
-- Machine Learning: https://github.com/maxim5/cs229-2018-autumn/tree/main/notes
-- Reinforcement Learning: https://github.com/datawhalechina/easy-rl
+- Machine Learning
+    - https://github.com/maxim5/cs229-2018-autumn/tree/main/notes
+    - 最新的课程，补充更新了最新的AI进展主题：https://cs229.stanford.edu 
+- Reinforcement Learning
+    - https://github.com/datawhalechina/easy-rl
+    - https://hrl.boyuai.com/
 - SLAM：https://github.com/gaoxiang12/slambook2
 
 ## 补充说明(2025/08/16)：

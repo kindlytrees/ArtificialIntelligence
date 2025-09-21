@@ -13,6 +13,7 @@ string left_file = "../../stereo/left.png";
 string right_file = "../../stereo/right.png";
 
 // 在pangolin中画图，已写好，无需调整
+// StereoSGBM（Semi-Global Block Matching） 是一种用于双目视觉中计算视差图的半全局匹配算法，其核心是通过结合局部块匹配与全局能量优化，在保证效率的同时提升视差图的准确性
 void showPointCloud(
     const vector<Vector4d, Eigen::aligned_allocator<Vector4d>> &pointcloud);
 
