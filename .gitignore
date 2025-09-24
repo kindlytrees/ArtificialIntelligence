@@ -3,7 +3,6 @@ todo-*
 Untitled.ipynb
 *.tar
 *.rar
-*txt
 *.pyc
 *.pth
 build/
