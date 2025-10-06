@@ -1,9 +1,13 @@
 # VGGT notes
 
 ## VGGT的关键思路和实现要点
+
 - 支持多帧场景，heads有
-    - camera pose的head
-    - dpt的head(dense prediction head)
+  - camera pose的head
+  - dpt的head(dense prediction head)
+    - 深度信息预测
+    - 三维点信息预测
+    - point tracking
 - 多个帧之间保持sequence-agnostic
 - camera的位姿变化相对于第一帧
 - 其他的帧会融合如相关帧的信息，但是单独预测dense的结果(dpt layer后接下游任务的head)
@@ -28,7 +32,6 @@ the special camera and register tokens allow the transformer to identify the fir
 
 描述介绍摘自大模型：
 
-
 ## vggt实现cotracker相当于用vggt做tracker的视觉特征提取backbone，这时的任务也将以帧的顺序输入以便cotrakcer中保持时序性，其他的depth以及semantic和camera的位姿变化预测的功能保持不变，这样的功能是否是很好的slam的前端？是否基于此的准确性是否不需要slam的后端了呢
 
 大模型给出的答案总结： [VGGT + CoTracker 超强前端] + [高效的后端优化器 (如g2o, GTSAM, Ceres)] = 顶级SLAM系统，但当前也有不少工程上的限制和挑战
@@ -43,4 +46,3 @@ the special camera and register tokens allow the transformer to identify the fir
 对于图片数 <= N_max 的场景，采用分桶 + 动态填充与掩码的策略来构建batch进行高效训练。
 
 ## vggt中如何融合text的信息？实现visual ground的功能？
-

@@ -31,3 +31,5 @@
 - 回环检测
     - 图像中基于bow的方法
     - cartographer中采用的匹配搜素的方式（基于激光点云）
+- SLAM最新进展
+    - VGGT用于SLAM：https://aeroastro.mit.edu/news-impact/vggt-slam-dense-rgb-slam-optimized-on-the-sl4-manifold/
