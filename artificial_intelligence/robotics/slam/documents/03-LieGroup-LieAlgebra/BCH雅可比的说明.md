@@ -11,14 +11,19 @@
 *   **场景**: 我有一个用李代数 $\boldsymbol{\phi}$ 参数化的姿态 $\boldsymbol{R} = \exp(\boldsymbol{\phi}^\wedge)$。现在，我打算在**参数空间**给它一个微小的增量 $\Delta\boldsymbol{\phi}$，得到新的参数 $\boldsymbol{\phi}' = \boldsymbol{\phi} + \Delta\boldsymbol{\phi}$。
 *   **问题**: 这个参数空间的变化，对应于一个什么样的**物理上的、作用在物体坐标系（左扰动）**的微小旋转 $\delta\boldsymbol{\epsilon}$ 呢？
 *   **关系式**:
+
     $$
     \underbrace{\exp((\boldsymbol{\phi}+\Delta\boldsymbol{\phi})^\wedge)}_{\text{新姿态}} \approx \underbrace{\exp(\delta\boldsymbol{\epsilon}^\wedge)}_{\text{物理扰动}} \underbrace{\exp(\boldsymbol{\phi}^\wedge)}_{\text{旧姿态}}
     $$
+
 *   **推导**: 运用BCH公式对上式右侧进行线性化，我们得到：
+
     $$
     \exp(\text{右侧}) \approx \exp((\boldsymbol{\phi} + \boldsymbol{J}_l(\boldsymbol{\phi})\delta\boldsymbol{\epsilon})^\wedge)
     $$
+
     对比左右两侧，我们发现参数的增量 $\Delta\boldsymbol{\phi}$ 和物理扰动 $\delta\boldsymbol{\epsilon}$ 的关系是：
+
     $$
     \Delta\boldsymbol{\phi} = \boldsymbol{J}_l(\boldsymbol{\phi}) \delta\boldsymbol{\epsilon}
     $$
@@ -40,15 +45,20 @@
 
 *   **物理运动学**: 刚体的姿态变化率由角速度决定：$\dot{\boldsymbol{R}}(t) = \boldsymbol{\omega}(t)^\wedge \boldsymbol{R}(t)$。这里的 $\boldsymbol{\omega}(t)$ 是在物体坐标系下测量的角速度，它是一个**物理量**，位于切空间。
 *   **参数求导**: 我们想知道参数 $\boldsymbol{\phi}(t)$ 的变化率 $\dot{\boldsymbol{\phi}}(t)$ 是什么。
-    对 $\boldsymbol{R}(t) = \exp(\boldsymbol{\phi}(t)^\wedge)$ 求时间导数，有一个标准公式（称为 `dexp`）：
+    对 $\boldsymbol{R}(t) = \exp(\boldsymbol{\phi}(t)^\wedge)$ 求时间导数，有一个标准公式（称为 `dexp`）：  
+
     $$
     \dot{\boldsymbol{R}}(t) = \left[ \boldsymbol{J}_l(\boldsymbol{\phi}(t)) \dot{\boldsymbol{\phi}}(t) \right]^\wedge \boldsymbol{R}(t)
     $$
+
 *   **建立联系**: 对比上面两个 $\dot{\boldsymbol{R}}(t)$ 的表达式，我们可以立即得到物理角速度 $\boldsymbol{\omega}(t)$ 和参数变化率 $\dot{\boldsymbol{\phi}}(t)$ 之间的关系：
+
     $$
     \boldsymbol{\omega}(t) = \boldsymbol{J}_l(\boldsymbol{\phi}(t)) \dot{\boldsymbol{\phi}}(t)
     $$
+
 *   **求解参数更新**: 在运动积分或优化中，我们已知的是物理量 $\boldsymbol{\omega}(t)$，要求的是参数的变化率 $\dot{\boldsymbol{\phi}}(t)$。因此，我们需要对上式求逆：
+
     $$
     \dot{\boldsymbol{\phi}}(t) = \boldsymbol{J}_l^{-1}(\boldsymbol{\phi}(t)) \boldsymbol{\omega}(t)
     $$
