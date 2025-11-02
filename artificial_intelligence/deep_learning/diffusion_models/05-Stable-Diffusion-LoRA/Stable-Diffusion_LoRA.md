@@ -15,4 +15,3 @@ pip install git+https://github.com/huggingface/diffusers
 具体的案例可以咨询大模型，比如向大模型提问：
  "请提供一个在google colab里训练text_to_image_lora的具体方法。
  或"请提供一个在baidu ai studio里训练text_to_image_lora的具体方法。"
-

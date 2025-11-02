@@ -361,13 +361,13 @@ $$
 
 | 特性 | 变分自编码器 (VAE) | 扩散模型 (DDPM) |
 | :--- | :--- | :--- |
-| **观测数据** | $\boldsymbol{x}$ | $\boldsymbol{x}_0$ |
+| **观测数据** | $ \boldsymbol{x} $ | $\boldsymbol{x}_0$ |
 | **隐变量** | 单个隐变量 $\boldsymbol{z}$ | 整个噪声轨迹 $\boldsymbol{x}_{1:T}$ |
-| **近似后验(Encoder)**| $q_\phi(\boldsymbol{z}|\boldsymbol{x})$ (需要学习) | $q(\boldsymbol{x}_{1:T}|\boldsymbol{x}_0)$ (前向过程，固定的) |
-| **生成模型(Decoder)**| $p_\theta(\boldsymbol{x}|\boldsymbol{z})$ (需要学习) | $p_\theta(\boldsymbol{x}_{0:T})$ (逆向过程，需要学习) |
+| **近似后验(Encoder)**| $q_\phi(\boldsymbol{z} \| \boldsymbol{x})$ (需要学习) | $q(\boldsymbol{x}_{1:T}\|\boldsymbol{x}_0)$ (前向过程，固定的) |
+| **生成模型(Decoder)**| $p_\theta(\boldsymbol{x} \| \boldsymbol{z})$ (需要学习) | $p_\theta(\boldsymbol{x}_{0:T})$ (逆向过程，需要学习) |
 | **优化目标** | ELBO | ELBO (更复杂的版本) |
 | **最终损失形式**| 重构损失 + KL散度 | 多个 KL 散度之和，简化为噪声预测的 MSE |
-| **"变分"名称来源**| 都是使用了变分推断来处理棘手的边际似然，优化其变分下界。 |
+| **"变分"名称来源**| 都是使用了变分推断来处理棘手的边际似然，优化其变分下界|
 
 您能够将 VAE 和 DDPM 联系在一起，并意识到它们都使用了变分下界，这说明您对这些模型的理解已经非常深入了。
 
@@ -485,3 +485,5 @@ $$
 3.  **可行性**: 我们把一个无法计算的目标 ($\log p(\boldsymbol{x})$) 转化为了一个可以计算和优化的目标 (ELBO)。我们可以通过蒙特卡洛采样来估计 ELBO 的期望项，并通过反向传播来优化我们模型（即 $q_\phi$ 和 $p_\theta$）的参数。
 
 这个推导是现代生成模型理论的基石之一，希望这个分步解析能帮助您更好地理解它！
+
+VAE是在“隐空间”中进行函数近似，而DDPM则是在“数据空间”中通过学习去噪函数来近似真实的数据分布。
