@@ -23,7 +23,7 @@ $$
 &\quad \text { 获取环境初始状态 } s_1\\
 &\quad \text { for 时间步 } t=1 \rightarrow T \text { do }\\
 &\quad \quad \text { 根据当前网络 } Q_\omega(s, a) \text { 以 } \epsilon \text {-贪婪策略选择动作 } a_t\\
-&\quad \quad \text { 执行动作 } a_t \text {, 获得回报 } r_t \text {, 环境状态变为 } s_{t+1}, { 将 }\left(s_i, a_i, r_t, s_{t+1}\right) \text { 存储进回放池 } R \text { 中 }\\
+&\quad \quad \text { 执行动作 } a_t \text {, 获得回报 } r_t \text {, 环境状态变为 } s_{t+1}, { 将 }\left(s_t, a_t, r_t, s_{t+1}\right) \text { 存储进回放池 } R \text { 中 }\\
 &\quad \quad \text { 若 } R \text { 中数据足够, 从 } R \text { 中采样 } N \text { 个数据 }\left\{\left(s_i, a_i, r_i, s_{i+1}\right)\right\}_{i=1, \ldots, N}\\
 &\quad \quad \text { 对每个数据, 用目标网络计算 } y_i=r_i+\gamma \max _a Q_{\omega^{-}}\left(s_{i+1}, a\right)\\
 &\quad \quad \text { 最小化目标损失 } L=\frac{1}{N} \sum_i\left(y_i-Q_\omega\left(s_i, a_i\right)\right)^2 \text {, 以此更新当前网络 } Q_\omega\\

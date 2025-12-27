@@ -45,4 +45,5 @@ the special camera and register tokens allow the transformer to identify the fir
 对于图片数 > N_max 的场景，进行随机采样。
 对于图片数 <= N_max 的场景，采用分桶 + 动态填充与掩码的策略来构建batch进行高效训练。
 
-## vggt中如何融合text的信息？实现visual ground的功能？
+“Grounded” 是什么？	将语言与感知世界（图像、3D 空间）中的具体实例对齐的能力
+“Visual Geometry Grounded” 强调什么？	不仅识别物体，还理解其空间位置、形状、相对关系等几何属性

@@ -2,7 +2,7 @@
 
 ## 知识要点
 - 即时奖励的计算
-    - Reward modeling给回答打分，作为整个episode的即时奖励的最后
+    - Reward modeling给回答打分，作为整个episode的最后的即时奖励
     - KL相关的计算，作为per token level的中间时间序列的即时奖励的计算
 - td_target和之前的actor-critic的思路一致，而GRPO(Critic-Free)算法中没有critic网络，其优势函数主要基于组内的相对得分优势得出
 - SFT,Reward Modeling,RLHF三个模型

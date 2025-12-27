@@ -69,7 +69,6 @@ class REINFORCE:
             loss.backward()  # 反向传播计算梯度
         self.optimizer.step()  # 梯度下降
 
-
 learning_rate = 1e-3
 num_episodes = 1000
 hidden_dim = 128

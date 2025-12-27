@@ -7,3 +7,4 @@
 - ConRFT: 真实环境下基于强化学习的 VLA 模型微调方法 https://www.longtengyatai.com/info/128
 - 3D-MoRe: Unified Modal-Contextual Reasoning for Embodied Question Answering https://3d-more.github.io/
 - VLA-RL: Towards Masterful and General Robotic Manipulation with Scalable Reinforcement Learning https://github.com/GuanxingLu/vlarl
+- Learning a Unified Policy for Position and Force Control in Legged Loco-Manipulation https://unified-force.github.io/

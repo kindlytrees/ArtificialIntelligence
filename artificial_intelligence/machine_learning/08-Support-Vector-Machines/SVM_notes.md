@@ -43,7 +43,6 @@ $$
 $$
 
 - w的模的倒数不是凸函数说明：从几何上看，连接凸函数图上任意两点的线段，总是在函数图的上方或与函数图重合。如w为一元参数时，连接 (1,1)和 (−1,1)的线段是一条水平线y=1。而函数f(x)=1/∣x∣在x=0处无限高，这意味着这条线段在某些点上位于函数图的下方（例如在x=0处），因此它不是凸函数。
-
 - 可以将最小函数间隔根据w进行缩放后设置为常数1，同时将w的模的倒数最大化等价为模的平方的最小化，转换后的优化目标和约束函数以及朗格朗日乘数子函数为  
 
 $$
@@ -55,7 +54,6 @@ $$
 $$
 
 - 从几何上看，凸函数连接函数图上任意两点的线段，总是在函数图的上方或与函数图重合。
-
 
 ## 约束优化问题的代数几何含义解释
 - 梯度方向是垂直于切线方向，和等值线(面)法向量保持一致
@@ -72,7 +70,7 @@ $$
 &=\omega-\sum_{i=1}^n \alpha_i y^{(i)} x^{(i)}=0 \\
 & \omega= \sum_{i=1}^n \alpha_i y^{(i)} x^{(i)} \\
 & \frac{\partial L}{\partial b}=-\sum_{i=1}^n \alpha_i y^{(i)}=0 \\
-&  L(\omega, b, \alpha)=\frac{1}{2}\left\|\sum_{i=1}^n \alpha_i y^{(i)} x^{(i)}\right\|^2-\sum_{i=1}^n \alpha_i y^{(i)} \left(\sum_{j=1}^n \alpha_j y^{(j)} x^{(j)} \right)^{T} \cdot x^{(i)} \\
+&  L(\omega, b, \alpha)=\frac{1}{2}\left\|\sum_{i=1}^n \alpha_i y^{(i)} x^{(i)}\right\|^2-\sum_{i=1}^n \alpha_i y^{(i)} \left(\sum_{j=1}^n \alpha_j y^{(j)} x^{(j)} \right)^{T} \cdot x^{(i)} +\sum_{i=1}^n \alpha_i \\
 &=\frac{1}{2} \sum_{i=1}^n \alpha_i y^{(i)} \left(x^{(i)}\right)^{T} \cdot \sum_{j=1}^n \alpha_j y^{(i)} x^{(j)}-\sum_{i=1}^n \alpha_i y^{(i)} \left(x^{(i)}\right)^{T} \sum_{j=1}^n \alpha_j y^{(j)} x^{(j)}+\sum_{i=1}^n \alpha_i \\
 &=\sum_{i=1}^n \alpha_i-\frac{1}{2} \sum_{i=1}^n \sum_{j=1}^n \alpha_i \alpha_j y^{(i)} \left(x^{(i)}\right)^{T} \cdot y^{(j)} x^{(j)} \\
 &=\sum_{i=1}^n \alpha_i-\frac{1}{2} \sum_{i=1}^n \sum_{j=1}^n \alpha_i \alpha_j y^{(i)} y^{(j)}\left\langle x^{(i)}, x^{(j)}\right\rangle
