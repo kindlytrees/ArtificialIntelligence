@@ -2,27 +2,27 @@
 
 ### 机器学习
 - [课程视频](https://space.bilibili.com/505620745/lists/5592212)
-- [实验手册](./artificial_intelligence/machine_learning/)
+- [实验手册](./MachineLearning/)
 
 ### 强化学习
 - [课程视频](https://space.bilibili.com/505620745/lists/5730406)
-- [实验手册](./artificial_intelligence/reinforcement_learning/)
+- [实验手册](./ReinforcementLearning/)
 
 ### 大语言模型基础
 - [课程视频](https://space.bilibili.com/505620745/lists/5789485)
-- [实验手册](./artificial_intelligence/deep_learning/llm/)
+- [实验手册](./LLM-MLLM/)
 
 ### 扩散模型基础及其在图像生成中的应用
 - [课程视频](https://space.bilibili.com/505620745/lists/5842637)
-- [实验手册](./artificial_intelligence/deep_learning/diffusion_models/)
+- [实验手册](./DiffusionModels/)
 
 ### SLAM原理及应用
 - [课程视频](https://space.bilibili.com/505620745/lists/5906077)
-- [实验手册](./artificial_intelligence/robotics/slam/)
+- [实验手册](./Robotics/slam/)
 
 ### 具身智能模型算法介绍
 - [课程视频](https://space.bilibili.com/505620745/lists/6055359)
-- [实验手册](./artificial_intelligence/robotics/xembodiment/)
+- [实验手册](./Robotics/xembodiment/)
 
 ## 主要参考资源
 - Machine Learning

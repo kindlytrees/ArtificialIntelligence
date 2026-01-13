@@ -1,18 +1,18 @@
 [submodule "3rdparty/Pangolin"]
-	path = robotics/slam/experiments/3rdparty/Pangolin
+	path = Robotics/slam/experiments/3rdparty/Pangolin
 	url = https://github.com/stevenlovegrove/Pangolin
 [submodule "3rdparty/Sophus"]
-	path = robotics/slam/experiments/3rdparty/Sophus
+	path = Robotics/slam/experiments/3rdparty/Sophus
 	url = https://github.com/strasdat/Sophus
 [submodule "3rdparty/ceres-solver"]
 	path = robotics/slam/experiments/3rdparty/ceres-solver
 	url = https://github.com/ceres-solver/ceres-solver
 [submodule "3rdparty/g2o"]
-	path = robotics/slam/experiments/3rdparty/g2o
+	path = Robotics/slam/experiments/3rdparty/g2o
 	url = https://github.com/RainerKuemmerle/g2o
 [submodule "3rdparty/DBoW3"]
-	path = robotics/slam/experiments/3rdparty/DBoW3
+	path = Robotics/slam/experiments/3rdparty/DBoW3
 	url = https://github.com/rmsalinas/DBow3
 [submodule "3rdparty/googletest"]
-	path = robotics/slam/experiments/3rdparty/googletest
+	path = Robotics/slam/experiments/3rdparty/googletest
 	url = https://github.com/google/googletest.git
