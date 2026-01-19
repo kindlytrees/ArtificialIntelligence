@@ -1,5 +1,7 @@
 # 人工智能算法集
 
+## 人工智能基础课程
+
 ### 机器学习
 - [课程视频](https://space.bilibili.com/505620745/lists/5592212)
 - [实验手册](./MachineLearning/)
@@ -8,21 +10,19 @@
 - [课程视频](https://space.bilibili.com/505620745/lists/5730406)
 - [实验手册](./ReinforcementLearning/)
 
+## 多模态大模型算法集
+
 ### 大语言模型基础
 - [课程视频](https://space.bilibili.com/505620745/lists/5789485)
-- [实验手册](./LLM-MLLM/)
+- [实验手册](./MLMs/LLMs/)
 
 ### 扩散模型基础及其在图像生成中的应用
 - [课程视频](https://space.bilibili.com/505620745/lists/5842637)
-- [实验手册](./DiffusionModels/)
-
-### SLAM原理及应用
-- [课程视频](https://space.bilibili.com/505620745/lists/5906077)
-- [实验手册](./Robotics/slam/)
+- [实验手册](./MLMs/DiffusionModels/)
 
 ### 具身智能模型算法介绍
 - [课程视频](https://space.bilibili.com/505620745/lists/6055359)
-- [实验手册](./Robotics/xembodiment/)
+- [实验手册](./MLMs/EmbodimentAI/)
 
 ## 主要参考资源
 - Machine Learning
@@ -31,7 +31,6 @@
 - Reinforcement Learning
     - https://github.com/datawhalechina/easy-rl
     - https://hrl.boyuai.com/
-- SLAM：https://github.com/gaoxiang12/slambook2
 
 ## 补充说明(2025/08/16)：
 后续的相关问题只记录问题本身，如有读者对相关问题感兴趣，可以自行向大模型进行提问，并根据结果进行合理评判。
