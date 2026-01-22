@@ -4,6 +4,10 @@
 
 实验代码文件: Question_answeringBERT_from_Scratch.ipynb
 
+原始文件参考链接：`https://github.com/ChanCheeKean/DataScience/blob/main/13 - NLP/C04 - BERT (Pytorch Scratch).ipynb`
+
+添加了对于数据集的注释和说明
+
 数据集：电影对话语料库
 
 http://www.cs.cornell.edu/~cristian/data/cornell_movie_dialogs_corpus.zip
@@ -44,7 +48,7 @@ masked language model的数据集生成过程在代码中有具体的体现
 
 ## 实验三：BERT实现文本分类
 
-实验代码文件: detecting-bullying-tweets-pytorch-lstm-bert.ipynb
+实验代码文件: https://www.kaggle.com/code/ludovicocuoghi/detecting-bullying-tweets-pytorch-lstm-bert
 
 ```
 self.bert = BertModel.from_pretrained('bert-base-uncased')
@@ -67,7 +71,6 @@ qa这种场景下，如果question+context太长，经过分词器处理后会�
 tokenizer(text_a, text_b, ...) 这种调用方式是专门为需要输入一对文本的任务设计的，如问答（Question-Context）或自然语言推断（Premise-Hypothesis）。
 Tokenizer会自动将它们格式化成BERT等模型需要的格式，通常是：
 [CLS] question_tokens [SEP] context_tokens [SEP]
-
 
 model = AutoModelForQuestionAnswering.from_pretrained(model_checkpoint)
 hugging Face Transformers 库中的 AutoModelForQuestionAnswering。这是一个非常强大且方便的类，专门用于处理**抽取式问答（Extractive Question Answering）**任
